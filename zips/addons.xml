@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addons>
+<addon id="script.speedtester" name="Speed Tester" version="1.1.2+matrix.1" provider-name="Dr0idGuy, dagwieers">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0"/>
+  </requires>
+  <extension point="xbmc.python.script" library="resources/lib/addon_entry.py">
+    <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en_GB">Test your Internet bandwidth</summary>
+    <description lang="en_GB">This add-on tests your Internet bandwith and reports both download and upload speeds and latency from within Kodi.
+
+Use this if you are experiencing streaming issues and you suspect your network to be the cause.</description>
+    <disclaimer lang="en_GB">Speed Tester is powered by speedtest.net</disclaimer>
+    <language>en</language>
+    <license>Apache-2.0</license>
+    <email>dag@wieers.com</email>
+    <website>https://kodi.wiki/view/Add-on:Speed_Tester</website>
+    <source>https://github.com/add-ons/script.speedtester</source>
+    <news>
+v1.1.1 (2020-10-10)
+- Fix issues for Kodi repo review
+
+v1.1.1 (2020-10-10)
+- Add localization
+
+v1.1.0 (2020-09-26)
+- Move add-on to Add-ons project
+- Fix typos and structure of standard output
+
+v1.0.1 (2019-08-06)
+- Initial release
+    </news>
+    <assets>
+      <icon>resources/media/icon.png</icon>
+      <screenshot>resources/media/screenshot01.jpg</screenshot>
+      <screenshot>resources/media/screenshot02.jpg</screenshot>
+      <screenshot>resources/media/screenshot03.jpg</screenshot>
+    </assets>
+  </extension>
+</addon>
+<addon id="script.unlock.advancedsettings"
+       name="Unlock Kodi Advanced Settings"
+       version="1.0.3"
+       provider-name="Alex Bratchik">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+    </requires>
+    <extension point="xbmc.python.script" library="main.py">
+        <provides>executable</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <news>Fixed bugs</news>
+        <platform>all</platform>
+        <summary lang="en_GB">Unlock Kodi advanced settings</summary>
+        <description lang="en_GB">This plugin allows you to unlock and edit the hidden advanced system settings of Kodi. Please note that Kodi restart is required so that the advanced settings become in effect.</description>
+        <disclaimer lang="en_GB">This plugin was created just fo fun and has no relation to official Kodi software. PLease use at your own risk. Author bears no liability for any changes made by this plugin in your system.</disclaimer>
+        <summary lang="ru_RU"> Редактирование дополнительных настроек Kodi</summary>
+        <description lang="ru_RU">Это дополнение Kodi позволяет Вам просматривать и редактировать расширенные настройки Kodi, скрытые от обычных пользователей. После редактирования требуется перезагрузить Kodi.</description>
+        <disclaimer lang="ru_RU">Это дополнение Kodi разработано просто ради развлечения и не относится к официальному ПО Kodi. Испольуйте на свой собственный риск. Автор не несёт отвественности за любые изменения, произведённые при помоши данного плагина в Вашей системе.</disclaimer>
+        <platform>all</platform>
+        <language>ru en</language>
+        <license>GPL-3.0-or-later</license>
+        <source>https://github.com/abratchik/script.unlock.advancedsettings</source>
+        <forum>https://forum.kodi.tv/showthread.php?tid=362847</forum>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+            <screenshot>resources/screenshot-01.png</screenshot>
+        </assets>
+    </extension>
+</addon>	
+</addons>

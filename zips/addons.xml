@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="plugin.program.dwlite19wiz" name="DWLite 19 Wizard" version="1.0.4" provider-name="Slam and BYB Modded by DaBs ">
+<addon id="plugin.program.dwlite19wiz" name="DWLite 19 Wizard" version="1.0.5" provider-name="Slam and BYB Modded by DaBs ">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0"/>
 		<import addon="script.module.requests" optional="true" />
@@ -26,7 +26,9 @@
 				<fanart>resources/fanart.jpg</fanart>
 				<banner></banner>
 				<clearlogo></clearlogo>
-				<screenshot></screenshot>
+				<screenshot>resources/screenshot-01.jpg</screenshot>
+				<screenshot>resources/screenshot-02.jpg</screenshot>
+				<screenshot>resources/screenshot-03.jpg</screenshot>
 		</assets>
 	</extension>
 </addon>

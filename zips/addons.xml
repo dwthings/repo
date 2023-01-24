@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addons>
+	<addon id="plugin.program.dwlite19wiz" name="DWLite 19 Wizard" version="1.0.5" provider-name="Slam and BYB Modded by DaBs ">
+		<requires>
+			<import addon="xbmc.python" version="3.0.0"/>
+			<import addon="script.module.requests" optional="true" />
+		</requires>
+		<extension point="xbmc.python.pluginsource" library="addon.py">
+			<provides>executable</provides>
+		</extension>
+		<extension point="xbmc.service" library="service.py" />
+		<extension point="xbmc.addon.metadata">
+			<summary lang="en_GB">DW Kodi 19 wizard. This was built off of Slam and BYB work.</summary>
+			<description lang="en_GB">Kodi 19 Wizard</description>
+			<disclaimer lang="en_GB">This Addon contains no content</disclaimer>
+			<language>en</language>
+			<platform>all</platform>
+			<license>GPL-2.0-or-later</license>
+			<forum></forum>
+			<website></website> 
+			<email></email>
+			<source></source>
+			<news>1.0.3 Added AUTO DELETE PACKAGES on startup, Fixed enableaddon error</news>
+			<assets>
+				<icon>resources/icon.png</icon>
+				<fanart>resources/fanart.jpg</fanart>
+				<banner></banner>
+				<clearlogo></clearlogo>
+				<screenshot>resources/screenshot-01.jpg</screenshot>
+				<screenshot>resources/screenshot-02.jpg</screenshot>
+				<screenshot>resources/screenshot-03.jpg</screenshot>
+			</assets>
+		</extension>
+	</addon>
+	<addon id="plugin.program.dwbig19wiz" name="DWBig 19 Wizard" version="8.0.5" provider-name="DW">
+		<requires>
+			<import addon="xbmc.python" version="3.0.0"/>
+			<import addon="script.module.six" />
+			<import addon="script.module.kodi-six" />
+		</requires>
+		<extension point="xbmc.python.pluginsource" library="default.py">
+			<provides>executable</provides>
+		</extension>
+		<extension point="xbmc.service" library="startup.py" start="startup" />
+		<extension point="xbmc.addon.metadata">
+			<summary lang="en">DW Matrix19 Wizard</summary>
+			<description lang="en">Experimental 19 wizard</description>
+			<platform>all</platform>
+			<assets>
+				<icon>icon.png</icon>
+				<fanart>fanart.jpg</fanart>
+				<banner></banner>
+				<clearlogo></clearlogo>
+				<screenshot>resources/screenshot-01.jpg</screenshot>
+				<screenshot>resources/screenshot-02.jpg</screenshot>
+				<screenshot>resources/screenshot-03.jpg</screenshot>
+			</assets>
+		</extension>
+	</addon>	
+	<addon id="script.unlock.advancedsettings"
+       name="Unlock Kodi Advanced Settings"
+       version="1.0.3"
+       provider-name="Alex Bratchik">
+		<requires>
+			<import addon="xbmc.python" version="3.0.0"/>
+		</requires>
+		<extension point="xbmc.python.script" library="main.py">
+			<provides>executable</provides>
+		</extension>
+		<extension point="xbmc.addon.metadata">
+			<news>Fixed bugs</news>
+			<platform>all</platform>
+			<summary lang="en_GB">Unlock Kodi advanced settings</summary>
+			<description lang="en_GB">This plugin allows you to unlock and edit the hidden advanced system settings of Kodi. Please note that Kodi restart is required so that the advanced settings become in effect.</description>
+			<disclaimer lang="en_GB">This plugin was created just fo fun and has no relation to official Kodi software. PLease use at your own risk. Author bears no liability for any changes made by this plugin in your system.</disclaimer>
+			<summary lang="ru_RU"> Редактирование дополнительных настроек Kodi</summary>
+			<description lang="ru_RU">Это дополнение Kodi позволяет Вам просматривать и редактировать расширенные настройки Kodi, скрытые от обычных пользователей. После редактирования требуется перезагрузить Kodi.</description>
+			<disclaimer lang="ru_RU">Это дополнение Kodi разработано просто ради развлечения и не относится к официальному ПО Kodi. Испольуйте на свой собственный риск. Автор не несёт отвественности за любые изменения, произведённые при помоши данного плагина в Вашей системе.</disclaimer>
+			<platform>all</platform>
+			<language>ru en</language>
+			<license>GPL-3.0-or-later</license>
+			<source>https://github.com/abratchik/script.unlock.advancedsettings</source>
+			<forum>https://forum.kodi.tv/showthread.php?tid=362847</forum>
+			<assets>
+				<icon>icon.png</icon>
+				<fanart>fanart.jpg</fanart>
+				<screenshot>resources/screenshot-01.png</screenshot>
+			</assets>
+		</extension>
+	</addon>
+	<addon id="plugin.audio.mp3streams" name="MP3 Streams" version="2022.0.2" provider-name="Jon Bovi">
+		<requires>
+			<import addon="xbmc.python" version="3.0.0"/>
+			<import addon="script.module.future"/>
+			<import addon="script.module.mutagen"/>
+			<import addon="script.module.requests"/>
+		</requires>
+		<extension point="xbmc.python.pluginsource" library="default.py">
+			<provides>audio</provides>
+		</extension>
+		<extension point="xbmc.service" library="playerMP3.py" start="startup" />
+		<extension point="xbmc.addon.metadata">
+			<platform>all</platform>
+			<summary>A music streaming Collection.</summary>
+			<description>MP3 Streams Kodi 19+</description>
+			<news>2022.0.2 - Fix errors loading pages. 2022.0.1 - Small fix, Kodi 20 ready. 2021.0.6 - Fixed issue with hanging  when skipping tracks. 2021.0.4 - Fixed Settings, 2021.0.3 - Bugfixes. Enjoy!</news>
+			<assets>
+				<icon>icon.png</icon>
+				<fanart>fanart.jpg</fanart>
+			</assets>
+		</extension>
+	</addon>
+	<addon id="script.skin.helper.colorpicker" name="Skin Helper Service ColorPicker" version="2.0.2" provider-name="marcelveldt,sualfred and others">
+		<requires>
+			<import addon="xbmc.python" version="3.0.0"/>
+			<import addon="script.module.pil" version="1.1.7"/>
+		</requires>
+		<extension point="xbmc.python.library" library="default.py" />
+		<extension point="xbmc.addon.metadata">
+			<summary lang="en_GB">Colorpicker for Kodi Skins. Part of Skin Helper Suite</summary>
+			<description lang="en_GB">Colorpicker for Kodi Skins. Part of Skin Helper Suite</description>
+			<platform>all</platform>
+			<license>GPL-2.0</license>
+			<forum>https://forum.kodi.tv/showthread.php?tid=235676</forum>
+			<source>https://github.com/kodi-community-addons/script.skin.helper.colorpicker</source>
+			<assets>
+				<icon>resources/icon.png</icon>
+				<fanart>resources/fanart.jpg</fanart>
+			</assets>
+		</extension>
+	</addon>	
+</addons>

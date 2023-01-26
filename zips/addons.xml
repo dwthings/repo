@@ -110,4 +110,28 @@
 			</assets>
 		</extension>
 	</addon>
+	<addon id="repository.dwstuff" name="dwstuff" version="1.3" provider-name="dwthings">
+    		<extension point="xbmc.addon.repository" name="Example Repository">
+        		<dir>
+            		<info compressed="false">https://raw.githubusercontent.com/dwthings/repo/master/zips/addons.xml</info>
+            		<checksum>https://raw.githubusercontent.com/dwthings/repo/master/zips/addons.xml.md5</checksum>
+            		<datadir zip="true">https://raw.githubusercontent.com/dwthings/repo/master/zips/</datadir>
+        		</dir>
+			<dir>
+			<info compressed="false">https://raw.githubusercontent.com/Gujal00/smrzips/master/addons.xml</info>
+			<checksum>https://raw.githubusercontent.com/Gujal00/smrzips/master/addons.xml.md5</checksum>
+			<datadir zip="true">https://raw.githubusercontent.com/Gujal00/smrzips/master/zips/</datadir>
+			</dir>
+    		</extension>
+    	<extension point="xbmc.addon.metadata">
+        <summary>dwstuff</summary>
+        <description>Just a small repo.</description>
+        <disclaimer></disclaimer>
+        <platform>all</platform>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+        </assets>
+    	</extension>
+	</addon>
 </addons>

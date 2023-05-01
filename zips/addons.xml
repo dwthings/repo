@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-	<addon id="plugin.program.dwlitewiz" name="DWLite Wizard" version="1.0.6" provider-name="Slam and BYB Modded by DaBs ">
+	<addon id="plugin.program.dwlitewiz" name="DWLite Wizard" version="1.0.7" provider-name="Slam and BYB Modded by DaBs ">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0"/>
 		<import addon="script.module.requests" optional="true" />

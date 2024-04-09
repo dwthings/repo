@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">603</defaultcontrol>
+	<visible>Window.IsActive(PlayerControls) + !Window.IsActive(FullscreenVideo) + !Window.IsActive(Visualisation)</visible>
+	<onunload condition="Window.IsActive(home)">SetFocus(9000)</onunload>
+	<menucontrol>9051</menucontrol>
+	<controls>
+		<control type="button" id="9051">
+			<include>HiddenObject</include>
+			<onfocus>Dialog.Close(playercontrols)</onfocus>
+		</control>
+		<control type="group">
+			<animation effect="slide" start="0,-238" end="0,0" time="240" tween="quadratic">WindowOpen</animation>
+			<animation effect="slide" end="0,-238" start="0,0" time="240" tween="quadratic">WindowClose</animation>
+			<control type="image" id="0">
+				<width>100%</width>
+				<height>95</height>
+				<texture border="1,0,1,40">topbar.png</texture>
+				<visible>[String.IsEmpty(Skin.String(topslidebar))]</visible>
+				<visible>!Skin.HasSetting(Disable.Top.Slide.Bar)</visible>
+			</control>
+			<control type="image" id="0">
+				<width>100%</width>
+				<height>95</height>
+				<texture colordiffuse="$VAR[TopSlideBarColor]" fallback="topbar.png">$INFO[Skin.String(topslidebar)]</texture>
+				<visible>!Skin.HasSetting(Disable.Top.Slide.Bar)</visible>
+			</control>
+			<control type="grouplist" id="202">
+				<top>8</top>
+				<height>144</height>
+				<width>100%</width>
+				<align>center</align>
+				<scrolltime tween="sine">200</scrolltime>
+				<orientation>horizontal</orientation>
+				<onup>700</onup>
+				<ondown>709</ondown>
+				<onleft>202</onleft>
+				<onright>202</onright>
+				<!-- <control type="button" id="700">
+					<textoffsety>60</textoffsety>
+					<texturefocus colordiffuse="$VAR[MediaMenuButtonSelectedColor]" border="5">playerbutton_fo.png</texturefocus>
+					<texturenofocus colordiffuse="$VAR[MediaMenuButtonUnselectedColor]" border="5">playerbutton_nf.png</texturenofocus>
+					<label>PLAY[CR]LIST</label>
+					<width>80</width>
+					<height>80</height>
+					<font>font13</font>
+					<textcolor>$VAR[MediaMenuTextUnselectedColor]</textcolor>
+				    <focusedcolor>$VAR[MediaMenuTextSelectedColor]</focusedcolor>
+					<onclick condition="Player.HasAudio">ActivateWindow(MusicPlaylist)</onclick>
+					<onclick condition="Player.HasVideo">ActivateWindow(VideoPlaylist)</onclick>
+					<visible>![Window.IsActive(home) + Player.HasVideo]</visible>
+				</control> -->
+				<control type="button" id="600">
+					<texturefocus colordiffuse="$VAR[MediaMenuButtonSelectedColor]" border="5">playerbutton_fo.png</texturefocus>
+					<texturenofocus colordiffuse="$VAR[MediaMenuButtonUnselectedColor]" border="5">playerbutton_nf.png</texturenofocus>
+					<align>center</align>
+					<label>f</label>
+					<width>80</width>
+					<height>80</height>
+					<font>fontmedia3</font>
+					<textcolor>$VAR[MediaMenuTextUnselectedColor]</textcolor>
+				    <focusedcolor>$VAR[MediaMenuTextSelectedColor]</focusedcolor>
+					<onclick>PlayerControl(Previous)</onclick>
+				</control>
+				<control type="button" id="601">
+					<texturefocus colordiffuse="$VAR[MediaMenuButtonSelectedColor]" border="5">playerbutton_fo.png</texturefocus>
+					<texturenofocus colordiffuse="$VAR[MediaMenuButtonUnselectedColor]" border="5">playerbutton_nf.png</texturenofocus>
+					<align>center</align>
+					<label>d</label>
+					<width>80</width>
+					<height>80</height>
+					<font>fontmedia3</font>
+					<textcolor>$VAR[MediaMenuTextUnselectedColor]</textcolor>
+				    <focusedcolor>$VAR[MediaMenuTextSelectedColor]</focusedcolor>
+					<onclick>PlayerControl(Rewind)</onclick>
+				</control>
+				<control type="togglebutton" id="602">
+					<texturefocus colordiffuse="$VAR[MediaMenuButtonSelectedColor]" border="5">playerbutton_fo.png</texturefocus>
+					<texturenofocus colordiffuse="$VAR[MediaMenuButtonUnselectedColor]" border="5">playerbutton_nf.png</texturenofocus>
+					<alttexturefocus colordiffuse="$VAR[MediaMenuButtonSelectedColor]" border="5">playerbutton_fo.png</alttexturefocus>
+					<alttexturenofocus colordiffuse="$VAR[MediaMenuButtonUnselectedColor]" border="5">playerbutton_nf.png</alttexturenofocus>
+					<align>center</align>
+					<label>b</label>
+					<align>center</align>
+					<altlabel>a</altlabel>
+					<width>80</width>
+					<height>80</height>
+					<font>fontmedia2</font>
+					<textcolor>$VAR[MediaMenuTextUnselectedColor]</textcolor>
+				    <focusedcolor>$VAR[MediaMenuTextSelectedColor]</focusedcolor>
+					<usealttexture>Player.Paused | Player.Forwarding | Player.Rewinding</usealttexture>
+					<onclick>PlayerControl(Play)</onclick>
+					<oninfo>Dialog.Close(all,true)</oninfo>
+					<visible>!Skin.HasSetting(Disable.PlayerControlButtons)</visible>
+				</control>
+				<control type="button" id="603">
+					<texturefocus colordiffuse="$VAR[MediaMenuButtonSelectedColor]" border="5">playerbutton_fo.png</texturefocus>
+					<texturenofocus colordiffuse="$VAR[MediaMenuButtonUnselectedColor]" border="5">playerbutton_nf.png</texturenofocus>
+					<align>center</align>
+					<label>g</label>
+					<width>80</width>
+					<height>80</height>
+					<font>fontmedia2</font>
+					<textcolor>$VAR[MediaMenuTextUnselectedColor]</textcolor>
+				    <focusedcolor>$VAR[MediaMenuTextSelectedColor]</focusedcolor>
+					<onclick>PlayerControl(Stop)</onclick>
+					<oninfo>Dialog.Close(all,true)</oninfo>
+					<visible>!Skin.HasSetting(Disable.PlayerControlButtons)</visible>
+				</control>
+				<control type="button" id="604">
+					<texturefocus colordiffuse="$VAR[MediaMenuButtonSelectedColor]" border="5">playerbutton_fo.png</texturefocus>
+					<texturenofocus colordiffuse="$VAR[MediaMenuButtonUnselectedColor]" border="5">playerbutton_nf.png</texturenofocus>
+					<align>center</align>
+					<label>c</label>
+					<width>80</width>
+					<height>80</height>
+					<font>fontmedia3</font>
+					<textcolor>$VAR[MediaMenuTextUnselectedColor]</textcolor>
+				    <focusedcolor>$VAR[MediaMenuTextSelectedColor]</focusedcolor>
+					<onclick condition="!Player.TempoEnabled">PlayerControl(Forward)</onclick>
+					<onclick condition="Player.TempoEnabled">PlayerControl(tempoup)</onclick>
+					<oninfo>Dialog.Close(all,true)</oninfo>
+					<visible>!Skin.HasSetting(Disable.PlayerControlButtons)</visible>
+				</control>
+				<control type="button" id="605">
+					<texturefocus colordiffuse="$VAR[MediaMenuButtonSelectedColor]" border="5">playerbutton_fo.png</texturefocus>
+					<texturenofocus colordiffuse="$VAR[MediaMenuButtonUnselectedColor]" border="5">playerbutton_nf.png</texturenofocus>
+					<align>center</align>
+					<label>e</label>
+					<width>80</width>
+					<height>80</height>
+					<font>fontmedia3</font>
+					<textcolor>$VAR[MediaMenuTextUnselectedColor]</textcolor>
+				    <focusedcolor>$VAR[MediaMenuTextSelectedColor]</focusedcolor>
+					<onclick>PlayerControl(Next)</onclick>
+					<oninfo>Dialog.Close(all,true)</oninfo>
+					<visible>!Skin.HasSetting(Disable.PlayerControlButtons)</visible>
+				</control>
+				<!-- <control type="togglebutton" id="704">
+					<texturefocus colordiffuse="$VAR[MediaMenuButtonSelectedColor]" border="5">playerbutton_fo.png</texturefocus>
+					<texturenofocus colordiffuse="$VAR[MediaMenuButtonUnselectedColor]" border="5">playerbutton_nf.png</texturenofocus>
+					<alttexturefocus colordiffuse="$VAR[MediaMenuButtonSelectedColor]" border="5">playerbutton_fo.png</alttexturefocus>
+					<alttexturenofocus colordiffuse="$VAR[MediaMenuButtonUnselectedColor]" border="5">playerbutton_nf.png</alttexturenofocus>
+					<align>center</align>
+					<label>RANDOM[CR]OFF</label>
+					<align>center</align>
+					<altlabel>RANDOM[CR]ON</altlabel>
+					<width>150</width>
+					<height>80</height>
+					<font>font13</font>
+					<textcolor>$VAR[MediaMenuTextUnselectedColor]</textcolor>
+				    <focusedcolor>$VAR[MediaMenuTextSelectedColor]</focusedcolor>
+					<usealttexture>Playlist.IsRandom</usealttexture>
+					<onclick>PlayerControl(Random)</onclick>
+					<visible>!MusicPartyMode.Enabled</visible>
+				</control> -->
+				<!-- <control type="button" id="707">
+					<width>0.1</width>
+					<height>0.1</height>
+					<texturefocus colordiffuse="$VAR[MediaMenuButtonSelectedColor]" border="5">playerbutton_fo.png</texturefocus>
+					<texturenofocus colordiffuse="$VAR[MediaMenuButtonUnselectedColor]" border="5">playerbutton_nf.png</texturenofocus>
+					<label>$LOCALIZE[486]$INFO[Playlist.Repeat, : ]</label>
+					<font />
+					<onclick>PlayerControl(Repeat)</onclick>
+					<visible>![Window.IsActive(home) + Player.HasVideo] + !MusicPartyMode.Enabled</visible>
+				</control>
+				<control type="image" id="708">
+					<texture>$VAR[MusicOSDRepeatButtonVar]</texture>
+					<width>100</width>
+					<height>100</height>
+					<visible>![Window.IsActive(home) + Player.HasVideo] + !MusicPartyMode.Enabled</visible>
+				</control>
+				<control type="button" id="709">
+					<texturefocus colordiffuse="$VAR[MediaMenuButtonSelectedColor]" border="5">playerbutton_fo.png</texturefocus>
+					<texturenofocus colordiffuse="$VAR[MediaMenuButtonUnselectedColor]" border="5">playerbutton_nf.png</texturenofocus>
+					<label />
+					<width>100</width>
+					<height>100</height>
+					<font />
+					<onclick>Close</onclick>
+					<onclick>Skin.ToggleSetting(Enable.ScreenshotMode)</onclick>
+					<onclick>Notification($LOCALIZE[19098]:,$LOCALIZE[31329],1500,icon.png)</onclick>
+					<onclick>AlarmClock(Take a Screenshot,TakeScreenshot,00:03,silent)</onclick>
+					<onclick>AlarmClock(Reset ScreenshotMode,Skin.Reset(Enable.ScreenshotMode),00:04,silent)</onclick>
+				</control> -->
+			</control>
+		</control>
+	</controls>
+</window>

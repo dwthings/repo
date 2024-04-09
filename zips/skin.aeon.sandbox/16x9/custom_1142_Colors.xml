@@ -1,0 +1,1358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window id="1142" type="dialog">
+	<defaultcontrol always="true">9000</defaultcontrol>
+	<onload condition="!System.HasAddon(script.skin.helper.colorpicker)">InstallAddon(script.skin.helper.colorpicker)</onload>
+	<controls>
+		<include>CommonBackground</include>
+			<control type="image">
+				<left>45</left>
+				<top>10</top>
+				<width>1827</width>
+				<height>885</height>
+				<texture border="40">dialogs/default/bg.png</texture>
+				<visible>[String.IsEmpty(Skin.String(frameboxtrans))]</visible>
+				<visible>!Skin.HasSetting(Disable.Frame.Box)</visible>
+			</control>
+			<control type="image">
+				<left>45</left>
+				<top>10</top>
+				<width>1827</width>
+				<height>885</height>
+				<texture colordiffuse="$VAR[TransListBoxColor]" fallback="dialogs/default/bg.png" border="40">$INFO[Skin.String(frameboxtrans)]</texture>
+				<visible>!Skin.HasSetting(Disable.Frame.Box)</visible>
+			</control>
+			<control type="image">
+			    <left>436</left>
+			    <top>47</top>
+			    <width>1</width>
+			    <height>810</height>
+			    <texture colordiffuse="$VAR[ThemeLabelColor]">separator_vertical.png</texture>
+			    <animation effect="slide" end="90" condition="Window.IsActive(profiles)">Conditional</animation>
+			    <animation effect="slide" end="275" condition="Window.IsActive(script-skinshortcuts.xml) + String.IsEmpty(Window(Home).Property(skinshortcuts-management-widget))">Conditional</animation>
+		    </control>
+			<control type="image">
+				<left>30</left>
+				<top>900</top>
+				<width>400</width>
+				<height>130</height>
+				<texture colordiffuse="$VAR[LogoColor]">aeon-nox-logo.png</texture>
+			</control>
+			<control type="group">
+			<top>15</top>
+			<control type="list" id="9000">
+				<left>81</left>
+				<top>32</top>
+				<width>356</width>
+				<height>840</height>
+				<onleft>9010</onleft>
+				<onright>9010</onright>
+				<onup>9000</onup>
+				<ondown>9000</ondown>
+				<pagecontrol />
+				<scrolltime tween="quadratic" easing="out">200</scrolltime>
+				<include>SettingsFadeAnimation</include>
+				<itemlayout height="90" width="356">
+					<control type="label">
+						<width>356</width>
+						<height>90</height>
+						<font>font15</font>
+						<textoffsetx>20</textoffsetx>
+						<textcolor>$VAR[ThemeLabelColor]</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</itemlayout>
+				<focusedlayout height="90" width="356">
+					<control type="image">
+						<width>356</width>
+						<height>90</height>
+						<texture border="4">listselect_fo.png</texture>
+						<visible>[String.IsEmpty(Skin.String(highlightbar))]</visible>
+						<visible>!Skin.HasSetting(Disable.Highlight.Bar)</visible>
+						<animation effect="fade" start="100" end="40" time="50" tween="sine" easing="inout" condition="!Control.HasFocus(9000)">Conditional</animation>
+					</control>
+					<control type="image">
+						<width>356</width>
+						<height>90</height>
+						<texture colordiffuse="$VAR[HighlightBarColor]" fallback="listselect_fo.png" border="4">$INFO[Skin.String(highlightbar)]</texture>
+						<visible>!Skin.HasSetting(Disable.Highlight.Bar)</visible>
+						<animation effect="fade" start="100" end="40" time="50" tween="sine" easing="inout" condition="!Control.HasFocus(9000)">Conditional</animation>
+					</control>
+					<control type="label">
+						<width>356</width>
+						<height>90</height>
+						<font>font15</font>
+						<textoffsetx>20</textoffsetx>
+						<textcolor>$VAR[SelectedLabelColor]</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+						<animation effect="fade" start="100" end="70" time="100" tween="sine" easing="inout" condition="!Control.HasFocus(9000)">Conditional</animation>
+					</control>
+				</focusedlayout>
+				<content>
+					<item id="4">
+						<label>31493</label>
+						<icon />
+					</item>
+					<item id="2">
+						<label>16000</label>
+						<icon />
+					</item>
+					<item id="1">
+						<label>513</label>
+						<icon />
+					</item>
+					<item id="3">
+						<label>31155</label>
+						<icon />
+					</item>
+				</content>
+			</control>
+			<control type="textbox">
+				<top>890</top>
+				<height>200</height>
+				<include>SettingsTextboxValues</include>
+				<label>$VAR[CustomColorsDescriptionVar]</label>
+				<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+				<animation effect="fade" start="0" end="100" time="100" tween="sine" easing="inout">Visible</animation>
+				<animation effect="fade" start="100" end="0" time="0" tween="sine" easing="inout">Hidden</animation>
+				<visible>ControlGroup(9010).HasFocus()</visible>
+			</control>
+			<control type="group" id="9010">
+				<control type="grouplist" id="9004">
+					<left>437</left>
+					<top>32</top>
+					<width>1401</width>
+					<height>810</height>
+					<pagecontrol>60</pagecontrol>
+					<onleft>9000</onleft>
+					<onright>60</onright>
+					<onup>9004</onup>
+					<ondown>9004</ondown>
+					<visible>Container(9000).HasFocus(4)</visible>
+					<control type="radiobutton" id="401">
+						<label>Blue</label>
+						<onclick>Skin.SetString(ThemeLabelColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(SelectedLabelColor,FFe8e8e8)</onclick>
+						<onclick>Skin.SetString(ThemeHomeMenuBarColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(homemenubar,special://skin/media/mod_images/menubars/bluegradient002.png)</onclick>
+						<onclick>Skin.SetString(ThemeHomeMenuEndsColor,00E8E8E8)</onclick>
+						<onclick>Skin.SetString(homemenuend,special://skin/media/mod_images/menubarends/side_fade.png)</onclick>
+						<onclick>Skin.SetString(FocusedMainMenuColor,FF4D94FE)</onclick>
+						<onclick>Skin.SetString(UnfocusedMainMenuColor,FF000000)</onclick>
+						<onclick>Skin.SetString(TransListBoxColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(frameboxtrans,special://skin/media/mod_images/frameboxtrans/bg0013.png)</onclick>
+						<onclick>Skin.SetString(SolidListBoxColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(frameboxsolid,special://skin/media/mod_images/frameboxsolid/default.png)</onclick>
+						<onclick>Skin.SetString(HighlightBarColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(highlightbar,special://skin/media/mod_images/highlightbar/default.png)</onclick>
+						<onclick>Skin.SetString(ThemeHomeSystemBarsColor,01e8e8e8)</onclick>
+						<onclick>Skin.SetString(systembars,special://skin/media/mod_images/systembarsbars/default.png)</onclick>
+						<onclick>Skin.SetString(widgethighlightsquare,special://skin/media/mod_images/widgethighlight/default.png)</onclick>
+						<onclick>Skin.SetString(WidgetHighlightColor,FF2A52BE)</onclick>						
+						<onclick>Skin.SetString(WidgetBackgroundColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(WidgetLabelColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(WidgetPosterFrameColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(FocusedSubMenuButtonColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(FocusedSubMenuColor,FF4D94FE)</onclick>
+						<onclick>Skin.SetString(UnfocusedSubMenuColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(submenuhighlight,special://skin/media/mod_images/submenuhighlight/tab06.png)</onclick>
+						<onclick>Skin.SetString(InfoBarTextColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(RSSFeedColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(UnWatchedEpColor,FF1B5776)</onclick>
+						<onclick>Skin.SetString(ThemeOSDProgressColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(LogoColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(KeyboardBoxColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(keyboardbox,special://skin/media/mod_images/keyboard/default.png)</onclick>
+						<onclick>Skin.SetString(KeyboardUnselectedKeysColor,FF181818)</onclick>
+						<onclick>Skin.SetString(KeyboardSelectedKeysColor,FF3B3B3B)</onclick>
+						<onclick>Skin.SetString(KeyboardUnselectedTextColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(KeyboardSelectedTextColor,FF4D94FE)</onclick>
+						<onclick>Skin.SetString(DialogBoxColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(dialogpopup,special://skin/media/mod_images/dialogbox/default.png)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonUnselectedColor,FF3B3B3B)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonSelectedColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonTextUnselectedColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonTextSelectedColor,FFe8e8e8)</onclick>
+						<onclick>Skin.SetString(DialogBoxProgressBar,FF0000FE)</onclick>
+						<onclick>Skin.SetString(DialogBoxContentTextColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(PowerMenuButtonUnselectedColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(PowerMenuButtonSelectedColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(PowerMenuTextUnselectedColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(PowerMenuTextSelectedColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(ContextMenuButtonUnselectedColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(ContextMenuButtonSelectedColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(ContextMenuTextUnselectedColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(ContextMenuTextSelectedColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(TopSlideBarColor,402A52BE)</onclick>
+						<onclick>Skin.SetString(topslidebar,special://skin/media/mod_images/topslidebar/plainwhite05.png)</onclick>
+						<onclick>Skin.SetString(BottomSlideBarColor,402A52BE)</onclick>
+						<onclick>Skin.SetString(bottomslidebar,special://skin/media/mod_images/bottomslidebar/plainwhite03.png)</onclick>
+						<onclick>Skin.SetString(MediaMenuButtonUnselectedColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(MediaMenuButtonSelectedColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(MediaMenuTextUnselectedColor,FF2A52BE)</onclick>
+						<onclick>Skin.SetString(MediaMenuTextSelectedColor,FFe8e8e8)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">FF2A52BE</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="402">
+						<label>Orange</label>
+						<onclick>Skin.SetString(ThemeLabelColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(SelectedLabelColor,FFe8e8e8)</onclick>
+						<onclick>Skin.SetString(ThemeHomeMenuBarColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(homemenubar,special://skin/media/mod_images/menubars/orangegradient002.png)</onclick>
+						<onclick>Skin.SetString(ThemeHomeMenuEndsColor,00E8E8E8)</onclick>
+						<onclick>Skin.SetString(homemenuend,special://skin/media/mod_images/menubarends/side_fade.png)</onclick>
+						<onclick>Skin.SetString(FocusedMainMenuColor,FFFFA366)</onclick>
+						<onclick>Skin.SetString(UnfocusedMainMenuColor,FF000000)</onclick>
+						<onclick>Skin.SetString(TransListBoxColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(frameboxtrans,special://skin/media/mod_images/frameboxtrans/bg0013.png)</onclick>
+						<onclick>Skin.SetString(SolidListBoxColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(frameboxsolid,special://skin/media/mod_images/frameboxsolid/default.png)</onclick>
+						<onclick>Skin.SetString(HighlightBarColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(highlightbar,special://skin/media/mod_images/highlightbar/default.png)</onclick>
+						<onclick>Skin.SetString(ThemeHomeSystemBarsColor,01e8e8e8)</onclick>
+						<onclick>Skin.SetString(systembars,special://skin/media/mod_images/systembarsbars/default.png)</onclick>
+						<onclick>Skin.SetString(widgethighlightsquare,special://skin/media/mod_images/widgethighlight/default.png)</onclick>
+						<onclick>Skin.SetString(WidgetHighlightColor,FFF16A15)</onclick>						
+						<onclick>Skin.SetString(WidgetBackgroundColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(WidgetLabelColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(WidgetPosterFrameColor,FFF16A15)</onclick>						
+						<onclick>Skin.SetString(FocusedSubMenuButtonColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(FocusedSubMenuColor,FFFFA366)</onclick>
+						<onclick>Skin.SetString(UnfocusedSubMenuColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(submenuhighlight,special://skin/media/mod_images/submenuhighlight/tab06.png)</onclick>
+						<onclick>Skin.SetString(InfoBarTextColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(RSSFeedColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(UnWatchedEpColor,FF95410C)</onclick>
+						<onclick>Skin.SetString(ThemeOSDProgressColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(LogoColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(KeyboardBoxColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(keyboardbox,special://skin/media/mod_images/keyboard/default.png)</onclick>
+						<onclick>Skin.SetString(KeyboardUnselectedKeysColor,FF181818)</onclick>
+						<onclick>Skin.SetString(KeyboardSelectedKeysColor,FF3B3B3B)</onclick>
+						<onclick>Skin.SetString(KeyboardUnselectedTextColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(KeyboardSelectedTextColor,FFFFA366)</onclick>
+						<onclick>Skin.SetString(DialogBoxColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(dialogpopup,special://skin/media/mod_images/dialogbox/default.png)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonUnselectedColor,FF3B3B3B)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonSelectedColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonTextUnselectedColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonTextSelectedColor,FFe8e8e8)</onclick>
+						<onclick>Skin.SetString(DialogBoxProgressBar,FFF16A15)</onclick>
+						<onclick>Skin.SetString(DialogBoxContentTextColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(PowerMenuButtonUnselectedColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(PowerMenuButtonSelectedColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(PowerMenuTextUnselectedColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(PowerMenuTextSelectedColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(ContextMenuButtonUnselectedColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(ContextMenuButtonSelectedColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(ContextMenuTextUnselectedColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(ContextMenuTextSelectedColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(TopSlideBarColor,3EF16A15)</onclick>
+						<onclick>Skin.SetString(topslidebar,special://skin/media/mod_images/topslidebar/plainwhite05.png)</onclick>
+						<onclick>Skin.SetString(BottomSlideBarColor,3EF16A15)</onclick>
+						<onclick>Skin.SetString(bottomslidebar,special://skin/media/mod_images/bottomslidebar/plainwhite03.png)</onclick>
+						<onclick>Skin.SetString(MediaMenuButtonUnselectedColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(MediaMenuButtonSelectedColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(MediaMenuTextUnselectedColor,FFF16A15)</onclick>
+						<onclick>Skin.SetString(MediaMenuTextSelectedColor,FFe8e8e8)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">FFF16A15</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="403">
+						<label>Red</label>
+						<onclick>Skin.SetString(ThemeLabelColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(SelectedLabelColor,FFe8e8e8)</onclick>
+						<onclick>Skin.SetString(ThemeHomeMenuBarColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(homemenubar,special://skin/media/mod_images/menubars/redgradient002.png)</onclick>
+						<onclick>Skin.SetString(ThemeHomeMenuEndsColor,00E8E8E8)</onclick>
+						<onclick>Skin.SetString(homemenuend,special://skin/media/mod_images/menubarends/side_fade.png)</onclick>
+						<onclick>Skin.SetString(FocusedMainMenuColor,FFFF9899)</onclick>
+						<onclick>Skin.SetString(UnfocusedMainMenuColor,FF000000)</onclick>
+						<onclick>Skin.SetString(TransListBoxColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(frameboxtrans,special://skin/media/mod_images/frameboxtrans/bg0013.png)</onclick>
+						<onclick>Skin.SetString(SolidListBoxColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(frameboxsolid,special://skin/media/mod_images/frameboxsolid/default.png)</onclick>
+						<onclick>Skin.SetString(HighlightBarColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(highlightbar,special://skin/media/mod_images/highlightbar/default.png)</onclick>
+						<onclick>Skin.SetString(ThemeHomeSystemBarsColor,01e8e8e8)</onclick>
+						<onclick>Skin.SetString(systembars,special://skin/media/mod_images/systembarsbars/default.png)</onclick>
+						<onclick>Skin.SetString(widgethighlightsquare,special://skin/media/mod_images/widgethighlight/default.png)</onclick>
+						<onclick>Skin.SetString(WidgetHighlightColor,FFD50000)</onclick>						
+						<onclick>Skin.SetString(WidgetBackgroundColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(WidgetLabelColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(WidgetPosterFrameColor,FFD50000)</onclick>						
+						<onclick>Skin.SetString(FocusedSubMenuButtonColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(FocusedSubMenuColor,FFFF9899)</onclick>
+						<onclick>Skin.SetString(UnfocusedSubMenuColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(submenuhighlight,special://skin/media/mod_images/submenuhighlight/tab06.png)</onclick>
+						<onclick>Skin.SetString(InfoBarTextColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(RSSFeedColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(UnWatchedEpColor,FF5A1511)</onclick>
+						<onclick>Skin.SetString(ThemeOSDProgressColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(LogoColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(KeyboardBoxColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(keyboardbox,special://skin/media/mod_images/keyboard/default.png)</onclick>
+						<onclick>Skin.SetString(KeyboardUnselectedKeysColor,FF181818)</onclick>
+						<onclick>Skin.SetString(KeyboardSelectedKeysColor,FF3B3B3B)</onclick>
+						<onclick>Skin.SetString(KeyboardUnselectedTextColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(KeyboardSelectedTextColor,FFFF9899)</onclick>
+						<onclick>Skin.SetString(DialogBoxColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(dialogpopup,special://skin/media/mod_images/dialogbox/default.png)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonUnselectedColor,FF3B3B3B)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonSelectedColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonTextUnselectedColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonTextSelectedColor,FFe8e8e8)</onclick>
+						<onclick>Skin.SetString(DialogBoxProgressBar,FFD50000)</onclick>
+						<onclick>Skin.SetString(DialogBoxContentTextColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(PowerMenuButtonUnselectedColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(PowerMenuButtonSelectedColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(PowerMenuTextUnselectedColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(PowerMenuTextSelectedColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(ContextMenuButtonUnselectedColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(ContextMenuButtonSelectedColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(ContextMenuTextUnselectedColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(ContextMenuTextSelectedColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(TopSlideBarColor,3ED50000)</onclick>
+						<onclick>Skin.SetString(topslidebar,special://skin/media/mod_images/topslidebar/plainwhite05.png)</onclick>
+						<onclick>Skin.SetString(BottomSlideBarColor,3ED50000)</onclick>
+						<onclick>Skin.SetString(bottomslidebar,special://skin/media/mod_images/bottomslidebar/plainwhite03.png)</onclick>
+						<onclick>Skin.SetString(MediaMenuButtonUnselectedColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(MediaMenuButtonSelectedColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(MediaMenuTextUnselectedColor,FFD50000)</onclick>
+						<onclick>Skin.SetString(MediaMenuTextSelectedColor,FFE8E8E8)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">FFD50000</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="404">
+						<label>Green</label>
+						<onclick>Skin.SetString(ThemeLabelColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(SelectedLabelColor,FFe8e8e8)</onclick>
+						<onclick>Skin.SetString(ThemeHomeMenuBarColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(homemenubar,special://skin/media/mod_images/menubars/greengradient002.png)</onclick>
+						<onclick>Skin.SetString(ThemeHomeMenuEndsColor,00E8E8E8)</onclick>
+						<onclick>Skin.SetString(homemenuend,special://skin/media/mod_images/menubarends/side_fade.png)</onclick>
+						<onclick>Skin.SetString(FocusedMainMenuColor,FF5CFF34)</onclick>
+						<onclick>Skin.SetString(UnfocusedMainMenuColor,FF000000)</onclick>
+						<onclick>Skin.SetString(TransListBoxColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(frameboxtrans,special://skin/media/mod_images/frameboxtrans/bg0013.png)</onclick>
+						<onclick>Skin.SetString(SolidListBoxColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(frameboxsolid,special://skin/media/mod_images/frameboxsolid/default.png)</onclick>
+						<onclick>Skin.SetString(HighlightBarColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(highlightbar,special://skin/media/mod_images/highlightbar/default.png)</onclick>
+						<onclick>Skin.SetString(ThemeHomeSystemBarsColor,01e8e8e8)</onclick>
+						<onclick>Skin.SetString(systembars,special://skin/media/mod_images/systembarsbars/default.png)</onclick>
+						<onclick>Skin.SetString(widgethighlightsquare,special://skin/media/mod_images/widgethighlight/default.png)</onclick>
+						<onclick>Skin.SetString(WidgetHighlightColor,FF01CC00)</onclick>						
+						<onclick>Skin.SetString(WidgetBackgroundColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(WidgetLabelColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(WidgetPosterFrameColor,FF01CC00)</onclick>						
+						<onclick>Skin.SetString(FocusedSubMenuButtonColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(FocusedSubMenuColor,FF5CFF34)</onclick>
+						<onclick>Skin.SetString(UnfocusedSubMenuColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(submenuhighlight,special://skin/media/mod_images/submenuhighlight/tab06.png)</onclick>
+						<onclick>Skin.SetString(InfoBarTextColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(RSSFeedColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(UnWatchedEpColor,FF008001)</onclick>
+						<onclick>Skin.SetString(ThemeOSDProgressColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(LogoColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(KeyboardBoxColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(keyboardbox,special://skin/media/mod_images/keyboard/default.png)</onclick>
+						<onclick>Skin.SetString(KeyboardUnselectedKeysColor,FF181818)</onclick>
+						<onclick>Skin.SetString(KeyboardSelectedKeysColor,FF3B3B3B)</onclick>
+						<onclick>Skin.SetString(KeyboardUnselectedTextColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(KeyboardSelectedTextColor,FF5CFF34)</onclick>
+						<onclick>Skin.SetString(DialogBoxColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(dialogpopup,special://skin/media/mod_images/dialogbox/default.png)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonUnselectedColor,FF3B3B3B)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonSelectedColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonTextUnselectedColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonTextSelectedColor,FFe8e8e8)</onclick>
+						<onclick>Skin.SetString(DialogBoxProgressBar,FF01CC00)</onclick>
+						<onclick>Skin.SetString(DialogBoxContentTextColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(PowerMenuButtonUnselectedColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(PowerMenuButtonSelectedColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(PowerMenuTextUnselectedColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(PowerMenuTextSelectedColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(ContextMenuButtonUnselectedColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(ContextMenuButtonSelectedColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(ContextMenuTextUnselectedColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(ContextMenuTextSelectedColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(TopSlideBarColor,3E01CC00)</onclick>
+						<onclick>Skin.SetString(topslidebar,special://skin/media/mod_images/topslidebar/plainwhite05.png)</onclick>
+						<onclick>Skin.SetString(BottomSlideBarColor,3E01CC00)</onclick>
+						<onclick>Skin.SetString(bottomslidebar,special://skin/media/mod_images/bottomslidebar/plainwhite03.png)</onclick>
+						<onclick>Skin.SetString(MediaMenuButtonUnselectedColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(MediaMenuButtonSelectedColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(MediaMenuTextUnselectedColor,FF01CC00)</onclick>
+						<onclick>Skin.SetString(MediaMenuTextSelectedColor,FFe8e8e8)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">FF01CC00</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="405">
+						<label>Purple</label>
+						<onclick>Skin.SetString(ThemeLabelColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(SelectedLabelColor,FFe8e8e8)</onclick>
+						<onclick>Skin.SetString(ThemeHomeMenuBarColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(homemenubar,special://skin/media/mod_images/menubars/purplegradient002.png)</onclick>
+						<onclick>Skin.SetString(ThemeHomeMenuEndsColor,00E8E8E8)</onclick>
+						<onclick>Skin.SetString(homemenuend,special://skin/media/mod_images/menubarends/side_fade.png)</onclick>
+						<onclick>Skin.SetString(FocusedMainMenuColor,FFB096C8)</onclick>
+						<onclick>Skin.SetString(UnfocusedMainMenuColor,FF000000)</onclick>
+						<onclick>Skin.SetString(TransListBoxColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(frameboxtrans,special://skin/media/mod_images/frameboxtrans/bg0013.png)</onclick>
+						<onclick>Skin.SetString(SolidListBoxColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(frameboxsolid,special://skin/media/mod_images/frameboxsolid/default.png)</onclick>
+						<onclick>Skin.SetString(HighlightBarColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(highlightbar,special://skin/media/mod_images/highlightbar/default.png)</onclick>
+						<onclick>Skin.SetString(ThemeHomeSystemBarsColor,01e8e8e8)</onclick>
+						<onclick>Skin.SetString(systembars,special://skin/media/mod_images/systembarsbars/default.png)</onclick>
+						<onclick>Skin.SetString(widgethighlightsquare,special://skin/media/mod_images/widgethighlight/default.png)</onclick>
+						<onclick>Skin.SetString(WidgetHighlightColor,FF7C50A4)</onclick>						
+						<onclick>Skin.SetString(WidgetBackgroundColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(WidgetLabelColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(WidgetPosterFrameColor,FF7C50A4)</onclick>						
+						<onclick>Skin.SetString(FocusedSubMenuButtonColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(FocusedSubMenuColor,FFB096C8)</onclick>
+						<onclick>Skin.SetString(UnfocusedSubMenuColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(submenuhighlight,special://skin/media/mod_images/submenuhighlight/tab06.png)</onclick>
+						<onclick>Skin.SetString(InfoBarTextColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(RSSFeedColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(UnWatchedEpColor,FF342145)</onclick>
+						<onclick>Skin.SetString(ThemeOSDProgressColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(LogoColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(KeyboardBoxColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(keyboardbox,special://skin/media/mod_images/keyboard/default.png)</onclick>
+						<onclick>Skin.SetString(KeyboardUnselectedKeysColor,FF181818)</onclick>
+						<onclick>Skin.SetString(KeyboardSelectedKeysColor,FF3B3B3B)</onclick>
+						<onclick>Skin.SetString(KeyboardUnselectedTextColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(KeyboardSelectedTextColor,FFB096C8)</onclick>
+						<onclick>Skin.SetString(DialogBoxColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(dialogpopup,special://skin/media/mod_images/dialogbox/default.png)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonUnselectedColor,FF3B3B3B)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonSelectedColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonTextUnselectedColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonTextSelectedColor,FFe8e8e8)</onclick>
+						<onclick>Skin.SetString(DialogBoxProgressBar,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(DialogBoxContentTextColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(PowerMenuButtonUnselectedColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(PowerMenuButtonSelectedColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(PowerMenuTextUnselectedColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(PowerMenuTextSelectedColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(ContextMenuButtonUnselectedColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(ContextMenuButtonSelectedColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(ContextMenuTextUnselectedColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(ContextMenuTextSelectedColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(TopSlideBarColor,3E7C50A4)</onclick>
+						<onclick>Skin.SetString(topslidebar,special://skin/media/mod_images/topslidebar/plainwhite05.png)</onclick>
+						<onclick>Skin.SetString(BottomSlideBarColor,3E7C50A4)</onclick>
+						<onclick>Skin.SetString(bottomslidebar,special://skin/media/mod_images/bottomslidebar/plainwhite03.png)</onclick>
+						<onclick>Skin.SetString(MediaMenuButtonUnselectedColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(MediaMenuButtonSelectedColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(MediaMenuTextUnselectedColor,FF7C50A4)</onclick>
+						<onclick>Skin.SetString(MediaMenuTextSelectedColor,FFE8E8E8)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">FF7C50A4</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="406">
+						<label>Halloween</label>
+						<onclick>Skin.SetString(ThemeLabelColor,FFE65C01)</onclick>
+						<onclick>Skin.SetString(SelectedLabelColor,FF2CD13B)</onclick>
+						<onclick>Skin.SetString(ThemeHomeMenuBarColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(homemenubar,special://skin/media/mod_images/menubars/skulls001.png)</onclick>
+						<onclick>Skin.SetString(ThemeHomeMenuEndsColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(homemenuend,special://skin/media/mod_images/menubarends/side_pumpkin02.png)</onclick>
+						<onclick>Skin.SetString(FocusedMainMenuColor,FFE65C01)</onclick>
+						<onclick>Skin.SetString(UnfocusedMainMenuColor,FF727272)</onclick>
+						<onclick>Skin.SetString(TransListBoxColor,FF4C007F)</onclick>
+						<onclick>Skin.SetString(frameboxtrans,special://skin/media/mod_images/frameboxtrans/bg0013.png)</onclick>
+						<onclick>Skin.SetString(SolidListBoxColor,FF4C007F)</onclick>
+						<onclick>Skin.SetString(frameboxsolid,special://skin/media/mod_images/frameboxsolid/default.png)</onclick>
+						<onclick>Skin.SetString(HighlightBarColor,FF4C007F)</onclick>
+						<onclick>Skin.SetString(highlightbar,special://skin/media/mod_images/highlightbar/listselect_fo007b.png)</onclick>
+						<onclick>Skin.SetString(ThemeHomeSystemBarsColor,01e8e8e8)</onclick>
+						<onclick>Skin.SetString(systembars,special://skin/media/mod_images/systembarsbars/default.png)</onclick>
+						<onclick>Skin.SetString(widgethighlightsquare,special://skin/media/mod_images/widgethighlight/skulls002.png)</onclick>
+						<onclick>Skin.SetString(WidgetHighlightColor,FFE8E8E8)</onclick>						
+						<onclick>Skin.SetString(WidgetBackgroundColor,FF4C007F)</onclick>
+						<onclick>Skin.SetString(WidgetLabelColor,FFE65C01)</onclick>
+						<onclick>Skin.SetString(WidgetPosterFrameColor,FF2CD13B)</onclick>						
+						<onclick>Skin.SetString(FocusedSubMenuButtonColor,FF000000)</onclick>
+						<onclick>Skin.SetString(FocusedSubMenuColor,FFE65C01)</onclick>
+						<onclick>Skin.SetString(UnfocusedSubMenuColor,FF4C007F)</onclick>
+						<onclick>Skin.SetString(submenuhighlight,special://skin/media/mod_images/submenuhighlight/tab06.png)</onclick>
+						<onclick>Skin.SetString(InfoBarTextColor,FF4C007F)</onclick>
+						<onclick>Skin.SetString(RSSFeedColor,FFE65C01)</onclick>
+						<onclick>Skin.SetString(UnWatchedEpColor,FF4C007F)</onclick>
+						<onclick>Skin.SetString(ThemeOSDProgressColor,FFE65C01)</onclick>
+						<onclick>Skin.SetString(LogoColor,FF8D8D8D)</onclick>
+						<onclick>Skin.SetString(KeyboardBoxColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(keyboardbox,special://skin/media/mod_images/keyboard/keyboard_back011.png)</onclick>
+						<onclick>Skin.SetString(KeyboardUnselectedKeysColor,FF181818)</onclick>
+						<onclick>Skin.SetString(KeyboardSelectedKeysColor,FF3B3B3B)</onclick>
+						<onclick>Skin.SetString(KeyboardUnselectedTextColor,FF4C007F)</onclick>
+						<onclick>Skin.SetString(KeyboardSelectedTextColor,FFE65C01)</onclick>
+						<onclick>Skin.SetString(DialogBoxColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(dialogpopup,special://skin/media/mod_images/dialogbox/dialog_back013.png)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonUnselectedColor,FF3B3B3B)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonSelectedColor,FF4C007F)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonTextUnselectedColor,FF4C007F)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonTextSelectedColor,FFe8e8e8)</onclick>
+						<onclick>Skin.SetString(DialogBoxProgressBar,FFE65C01)</onclick>
+						<onclick>Skin.SetString(DialogBoxContentTextColor,FFE65C01)</onclick>
+						<onclick>Skin.SetString(PowerMenuButtonUnselectedColor,FF000000)</onclick>
+						<onclick>Skin.SetString(PowerMenuButtonSelectedColor,FF4C007F)</onclick>
+						<onclick>Skin.SetString(PowerMenuTextUnselectedColor,FF4C007F)</onclick>
+						<onclick>Skin.SetString(PowerMenuTextSelectedColor,FFE65C01)</onclick>
+						<onclick>Skin.SetString(ContextMenuButtonUnselectedColor,FF000000)</onclick>
+						<onclick>Skin.SetString(ContextMenuButtonSelectedColor,FF4C007F)</onclick>
+						<onclick>Skin.SetString(ContextMenuTextUnselectedColor,FF4C007F)</onclick>
+						<onclick>Skin.SetString(ContextMenuTextSelectedColor,FFE65C01)</onclick>
+						<onclick>Skin.SetString(TopSlideBarColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(topslidebar,special://skin/media/mod_images/topslidebar/topskullz02.png)</onclick>
+						<onclick>Skin.SetString(BottomSlideBarColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(bottomslidebar,special://skin/media/mod_images/bottomslidebar/btmskullz02.png)</onclick>
+						<onclick>Skin.SetString(MediaMenuButtonUnselectedColor,FF000000)</onclick>
+						<onclick>Skin.SetString(MediaMenuButtonSelectedColor,FF4C007F)</onclick>
+						<onclick>Skin.SetString(MediaMenuTextUnselectedColor,FF4C007F)</onclick>
+						<onclick>Skin.SetString(MediaMenuTextSelectedColor,FFE65C01)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">FF000000</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="407">
+						<label>Christmas</label>
+						<onclick>Skin.SetString(ThemeLabelColor,FF036F3E)</onclick>
+						<onclick>Skin.SetString(SelectedLabelColor,FF990100)</onclick>
+						<onclick>Skin.SetString(ThemeHomeMenuBarColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(homemenubar,special://skin/media/mod_images/menubars/holidaybar03.png)</onclick>
+						<onclick>Skin.SetString(ThemeHomeMenuEndsColor,00E8E8E8)</onclick>
+						<onclick>Skin.SetString(homemenuend,special://skin/media/mod_images/menubarends/side_fade.png)</onclick>
+						<onclick>Skin.SetString(FocusedMainMenuColor,FF990100)</onclick>
+						<onclick>Skin.SetString(UnfocusedMainMenuColor,FF013220)</onclick>
+						<onclick>Skin.SetString(TransListBoxColor,FF990100)</onclick>
+						<onclick>Skin.SetString(frameboxtrans,special://skin/media/mod_images/frameboxtrans/bg0013.png)</onclick>
+						<onclick>Skin.SetString(SolidListBoxColor,FF990100)</onclick>
+						<onclick>Skin.SetString(frameboxsolid,special://skin/media/mod_images/frameboxsolid/default.png)</onclick>
+						<onclick>Skin.SetString(HighlightBarColor,FF036F3E)</onclick>
+						<onclick>Skin.SetString(highlightbar,special://skin/media/mod_images/highlightbar/default.png)</onclick>
+						<onclick>Skin.SetString(ThemeHomeSystemBarsColor,01e8e8e8)</onclick>
+						<onclick>Skin.SetString(systembars,special://skin/media/mod_images/systembarsbars/default.png)</onclick>
+						<onclick>Skin.SetString(widgethighlightsquare,special://skin/media/mod_images/widgethighlight/holiday003.png)</onclick>
+						<onclick>Skin.SetString(WidgetHighlightColor,FFE8E8E8)</onclick>						
+						<onclick>Skin.SetString(WidgetBackgroundColor,FF990100)</onclick>
+						<onclick>Skin.SetString(WidgetLabelColor,FF036F3E)</onclick>
+						<onclick>Skin.SetString(WidgetPosterFrameColor,FF990100)</onclick>						
+						<onclick>Skin.SetString(FocusedSubMenuButtonColor,FF036F3E)</onclick>
+						<onclick>Skin.SetString(FocusedSubMenuColor,FF990100)</onclick>
+						<onclick>Skin.SetString(UnfocusedSubMenuColor,FF036F3E)</onclick>
+						<onclick>Skin.SetString(submenuhighlight,special://skin/media/mod_images/submenuhighlight/default.png)</onclick>
+						<onclick>Skin.SetString(InfoBarTextColor,FF036F3E)</onclick>
+						<onclick>Skin.SetString(RSSFeedColor,FF990100)</onclick>
+						<onclick>Skin.SetString(UnWatchedEpColor,FF4C007F)</onclick>
+						<onclick>Skin.SetString(ThemeOSDProgressColor,FF990100)</onclick>
+						<onclick>Skin.SetString(LogoColor,FF036F3E)</onclick>
+						<onclick>Skin.SetString(KeyboardBoxColor,FF036F3E)</onclick>
+						<onclick>Skin.SetString(keyboardbox,special://skin/media/mod_images/keyboard/default.png)</onclick>
+						<onclick>Skin.SetString(KeyboardUnselectedKeysColor,FF013220)</onclick>
+						<onclick>Skin.SetString(KeyboardSelectedKeysColor,FF036F3E)</onclick>
+						<onclick>Skin.SetString(KeyboardUnselectedTextColor,FF036F3E)</onclick>
+						<onclick>Skin.SetString(KeyboardSelectedTextColor,FF990100)</onclick>
+						<onclick>Skin.SetString(DialogBoxColor,FF036F3E)</onclick>
+						<onclick>Skin.SetString(dialogpopup,special://skin/media/mod_images/dialogbox/default.png)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonUnselectedColor,FF3B3B3B)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonSelectedColor,FF990100)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonTextUnselectedColor,FF036F3E)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonTextSelectedColor,FFe8e8e8)</onclick>
+						<onclick>Skin.SetString(DialogBoxProgressBar,FF990100)</onclick>
+						<onclick>Skin.SetString(DialogBoxContentTextColor,FF036F3E)</onclick>
+						<onclick>Skin.SetString(PowerMenuButtonUnselectedColor,FF036F3E)</onclick>
+						<onclick>Skin.SetString(PowerMenuButtonSelectedColor,FF990100)</onclick>
+						<onclick>Skin.SetString(PowerMenuTextUnselectedColor,FF036F3E)</onclick>
+						<onclick>Skin.SetString(PowerMenuTextSelectedColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(ContextMenuButtonUnselectedColor,FF036F3E)</onclick>
+						<onclick>Skin.SetString(ContextMenuButtonSelectedColor,FF990100)</onclick>
+						<onclick>Skin.SetString(ContextMenuTextUnselectedColor,FF036F3E)</onclick>
+						<onclick>Skin.SetString(ContextMenuTextSelectedColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(TopSlideBarColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(topslidebar,special://skin/media/mod_images/topslidebar/topholiday04.png)</onclick>
+						<onclick>Skin.SetString(BottomSlideBarColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(bottomslidebar,special://skin/media/mod_images/bottomslidebar/btmholiday10.png)</onclick>
+						<onclick>Skin.SetString(MediaMenuButtonUnselectedColor,FF036F3E)</onclick>
+						<onclick>Skin.SetString(MediaMenuButtonSelectedColor,FF036F3E)</onclick>
+						<onclick>Skin.SetString(MediaMenuTextUnselectedColor,FF036F3E)</onclick>
+						<onclick>Skin.SetString(MediaMenuTextSelectedColor,FF990100)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">FF036F3E</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="409">
+						<label>Wood</label>
+						<onclick>Skin.SetString(ThemeLabelColor,FF7F5939)</onclick>
+						<onclick>Skin.SetString(SelectedLabelColor,FFB08B6C)</onclick>
+						<onclick>Skin.SetString(ThemeHomeMenuBarColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(homemenubar,special://skin/media/mod_images/menubars/wood07.png)</onclick>
+						<onclick>Skin.SetString(ThemeHomeMenuEndsColor,00E8E8E8)</onclick>
+						<onclick>Skin.SetString(homemenuend,special://skin/media/mod_images/menubarends/side_fade.png)</onclick>
+						<onclick>Skin.SetString(FocusedMainMenuColor,FFB08B6C)</onclick>
+						<onclick>Skin.SetString(UnfocusedMainMenuColor,FF7F5939)</onclick>
+						<onclick>Skin.SetString(TransListBoxColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(frameboxtrans,special://skin/media/mod_images/frameboxtrans/woodframe04.png)</onclick>
+						<onclick>Skin.SetString(SolidListBoxColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(frameboxsolid,special://skin/media/mod_images/frameboxsolid/wood04.png)</onclick>
+						<onclick>Skin.SetString(HighlightBarColor,FFB08B6C)</onclick>
+						<onclick>Skin.SetString(highlightbar,special://skin/media/mod_images/highlightbar/woody10.png)</onclick>
+						<onclick>Skin.SetString(ThemeHomeSystemBarsColor,01e8e8e8)</onclick>
+						<onclick>Skin.SetString(systembars,special://skin/media/mod_images/systembarsbars/default.png)</onclick>
+						<onclick>Skin.SetString(widgethighlightsquare,special://skin/media/mod_images/widgethighlight/woody003.png)</onclick>
+						<onclick>Skin.SetString(WidgetHighlightColor,FFE8E8E8)</onclick>						
+						<onclick>Skin.SetString(WidgetBackgroundColor,FF7F5939)</onclick>
+						<onclick>Skin.SetString(WidgetLabelColor,FFB08B6C)</onclick>
+						<onclick>Skin.SetString(WidgetPosterFrameColor,FF7F5939)</onclick>						
+						<onclick>Skin.SetString(FocusedSubMenuButtonColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(FocusedSubMenuColor,FFB08B6C)</onclick>
+						<onclick>Skin.SetString(UnfocusedSubMenuColor,FF7F5939)</onclick>
+						<onclick>Skin.SetString(submenuhighlight,special://skin/media/mod_images/submenuhighlight/woody11.png)</onclick>
+						<onclick>Skin.SetString(InfoBarTextColor,FF7F5939)</onclick>
+						<onclick>Skin.SetString(RSSFeedColor,FFB08B6C)</onclick>
+						<onclick>Skin.SetString(UnWatchedEpColor,FF7F5939)</onclick>
+						<onclick>Skin.SetString(ThemeOSDProgressColor,FFB08B6C)</onclick>
+						<onclick>Skin.SetString(LogoColor,FF7F5939)</onclick>
+						<onclick>Skin.SetString(KeyboardBoxColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(keyboardbox,special://skin/media/mod_images/keyboard/woody09.png)</onclick>
+						<onclick>Skin.SetString(KeyboardUnselectedKeysColor,FF61442C)</onclick>
+						<onclick>Skin.SetString(KeyboardSelectedKeysColor,FF7F5939)</onclick>
+						<onclick>Skin.SetString(KeyboardUnselectedTextColor,FF7F5939)</onclick>
+						<onclick>Skin.SetString(KeyboardSelectedTextColor,FFB08B6C)</onclick>
+						<onclick>Skin.SetString(DialogBoxColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(dialogpopup,special://skin/media/mod_images/dialogbox/wood07.png)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonUnselectedColor,FF7F5939)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonSelectedColor,FFB08B6C)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonTextUnselectedColor,FF7F5939)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonTextSelectedColor,FFB08B6C)</onclick>
+						<onclick>Skin.SetString(DialogBoxProgressBar,FFB08B6C)</onclick>
+						<onclick>Skin.SetString(DialogBoxContentTextColor,FFB08B6C)</onclick>
+						<onclick>Skin.SetString(PowerMenuButtonUnselectedColor,FF7F5939)</onclick>
+						<onclick>Skin.SetString(PowerMenuButtonSelectedColor,FF7F5939)</onclick>
+						<onclick>Skin.SetString(PowerMenuTextUnselectedColor,FF7F5939)</onclick>
+						<onclick>Skin.SetString(PowerMenuTextSelectedColor,FFB08B6C)</onclick>
+						<onclick>Skin.SetString(ContextMenuButtonUnselectedColor,FF7F5939)</onclick>
+						<onclick>Skin.SetString(ContextMenuButtonSelectedColor,FF7F5939)</onclick>
+						<onclick>Skin.SetString(ContextMenuTextUnselectedColor,FF7F5939)</onclick>
+						<onclick>Skin.SetString(ContextMenuTextSelectedColor,FFB08B6C)</onclick>
+						<onclick>Skin.SetString(TopSlideBarColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(topslidebar,special://skin/media/mod_images/topslidebar/topwood008.png)</onclick>
+						<onclick>Skin.SetString(BottomSlideBarColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(bottomslidebar,special://skin/media/mod_images/bottomslidebar/btmwood005.png)</onclick>
+						<onclick>Skin.SetString(MediaMenuButtonUnselectedColor,FF7F5939)</onclick>
+						<onclick>Skin.SetString(MediaMenuButtonSelectedColor,FF7F5939)</onclick>
+						<onclick>Skin.SetString(MediaMenuTextUnselectedColor,FF7F5939)</onclick>
+						<onclick>Skin.SetString(MediaMenuTextSelectedColor,FFB08B6C)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">FF7F5939</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="410">
+						<label>Denim</label>
+						<onclick>Skin.SetString(ThemeLabelColor,FF2D8DBE)</onclick>
+						<onclick>Skin.SetString(SelectedLabelColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(ThemeHomeMenuBarColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(homemenubar,special://skin/media/mod_images/menubars/denim03.png)</onclick>
+						<onclick>Skin.SetString(ThemeHomeMenuEndsColor,00E8E8E8)</onclick>
+						<onclick>Skin.SetString(homemenuend,special://skin/media/mod_images/menubarends/side_fade.png)</onclick>
+						<onclick>Skin.SetString(FocusedMainMenuColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(UnfocusedMainMenuColor,FF2D8DBE)</onclick>
+						<onclick>Skin.SetString(TransListBoxColor,FF012966)</onclick>
+						<onclick>Skin.SetString(frameboxtrans,special://skin/media/mod_images/frameboxtrans/bg0013.png)</onclick>
+						<onclick>Skin.SetString(SolidListBoxColor,FF012966)</onclick>
+						<onclick>Skin.SetString(frameboxsolid,special://skin/media/mod_images/frameboxsolid/default.png)</onclick>
+						<onclick>Skin.SetString(HighlightBarColor,FF2D8DBE)</onclick>
+						<onclick>Skin.SetString(highlightbar,special://skin/media/mod_images/highlightbar/denim04.png)</onclick>
+						<onclick>Skin.SetString(ThemeHomeSystemBarsColor,01e8e8e8)</onclick>
+						<onclick>Skin.SetString(systembars,special://skin/media/mod_images/systembarsbars/default.png)</onclick>
+						<onclick>Skin.SetString(widgethighlightsquare,special://skin/media/mod_images/widgethighlight/patchy004.png)</onclick>
+						<onclick>Skin.SetString(WidgetHighlightColor,FFe8e8e8)</onclick>						
+						<onclick>Skin.SetString(WidgetBackgroundColor,FF012966)</onclick>
+						<onclick>Skin.SetString(WidgetLabelColor,FF2D8DBE)</onclick>
+						<onclick>Skin.SetString(WidgetPosterFrameColor,FF2D8DBE)</onclick>						
+						<onclick>Skin.SetString(FocusedSubMenuButtonColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(FocusedSubMenuColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(UnfocusedSubMenuColor,FF2D8DBE)</onclick>
+						<onclick>Skin.SetString(submenuhighlight,special://skin/media/mod_images/submenuhighlight/levitag02.png)</onclick>
+						<onclick>Skin.SetString(InfoBarTextColor,FF2D8DBE)</onclick>
+						<onclick>Skin.SetString(RSSFeedColor,FF2D8DBE)</onclick>
+						<onclick>Skin.SetString(UnWatchedEpColor,FF012966)</onclick>
+						<onclick>Skin.SetString(ThemeOSDProgressColor,FF2D8DBE)</onclick>
+						<onclick>Skin.SetString(LogoColor,FF012966)</onclick>
+						<onclick>Skin.SetString(KeyboardBoxColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(keyboardbox,special://skin/media/mod_images/keyboard/patchy003.png)</onclick>
+						<onclick>Skin.SetString(KeyboardUnselectedKeysColor,FF012966)</onclick>
+						<onclick>Skin.SetString(KeyboardSelectedKeysColor,FF2D8DBE)</onclick>
+						<onclick>Skin.SetString(KeyboardUnselectedTextColor,FF2D8DBE)</onclick>
+						<onclick>Skin.SetString(KeyboardSelectedTextColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(DialogBoxColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(dialogpopup,special://skin/media/mod_images/dialogbox/patchy005.png)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonUnselectedColor,FF3B3B3B)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonSelectedColor,FF2D8DBE)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonTextUnselectedColor,FF2D8DBE)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonTextSelectedColor,FFe8e8e8)</onclick>
+						<onclick>Skin.SetString(DialogBoxProgressBar,FF2D8DBE)</onclick>
+						<onclick>Skin.SetString(DialogBoxContentTextColor,FF2D8DBE)</onclick>
+						<onclick>Skin.SetString(PowerMenuButtonUnselectedColor,FF012966)</onclick>
+						<onclick>Skin.SetString(PowerMenuButtonSelectedColor,FF012966)</onclick>
+						<onclick>Skin.SetString(PowerMenuTextUnselectedColor,FF2D8DBE)</onclick>
+						<onclick>Skin.SetString(PowerMenuTextSelectedColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(ContextMenuButtonUnselectedColor,FF012966)</onclick>
+						<onclick>Skin.SetString(ContextMenuButtonSelectedColor,FF012966)</onclick>
+						<onclick>Skin.SetString(ContextMenuTextUnselectedColor,FF2D8DBE)</onclick>
+						<onclick>Skin.SetString(ContextMenuTextSelectedColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(TopSlideBarColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(topslidebar,special://skin/media/mod_images/topslidebar/topdenim05.png)</onclick>
+						<onclick>Skin.SetString(BottomSlideBarColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(bottomslidebar,special://skin/media/mod_images/bottomslidebar/btmdenim03.png)</onclick>
+						<onclick>Skin.SetString(MediaMenuButtonUnselectedColor,FF2D8DBE)</onclick>
+						<onclick>Skin.SetString(MediaMenuButtonSelectedColor,FF2D8DBE)</onclick>
+						<onclick>Skin.SetString(MediaMenuTextUnselectedColor,FF2D8DBE)</onclick>
+						<onclick>Skin.SetString(MediaMenuTextSelectedColor,FFE8E8E8)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">FF012966</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="415">
+						<label>Defaults</label>
+						<onclick>Skin.SetString(ThemeLabelColor,FFD1D1D1)</onclick>
+						<onclick>Skin.SetString(SelectedLabelColor,FF2D8DBE)</onclick>
+						<onclick>Skin.SetString(ThemeHomeMenuBarColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(homemenubar,special://skin/media/mod_images/menubars/default.png)</onclick>
+						<onclick>Skin.SetString(ThemeHomeMenuEndsColor,00E8E8E8)</onclick>
+						<onclick>Skin.SetString(homemenuend,special://skin/media/mod_images/menubarends/side_fade.png)</onclick>
+						<onclick>Skin.SetString(FocusedMainMenuColor,FFD1D1D1)</onclick>
+						<onclick>Skin.SetString(UnfocusedMainMenuColor,FF575757)</onclick>
+						<onclick>Skin.SetString(TransListBoxColor,FF8D8D8D)</onclick>
+						<onclick>Skin.SetString(frameboxtrans,special://skin/media/mod_images/frameboxtrans/default.png)</onclick>
+						<onclick>Skin.SetString(SolidListBoxColor,FF8D8D8D)</onclick>
+						<onclick>Skin.SetString(frameboxsolid,special://skin/media/mod_images/frameboxsolid/default.png)</onclick>
+						<onclick>Skin.SetString(HighlightBarColor,FF8D8D8D)</onclick>
+						<onclick>Skin.SetString(highlightbar,special://skin/media/mod_images/highlightbar/default.png)</onclick>
+						<onclick>Skin.SetString(ThemeHomeSystemBarsColor,01e8e8e8)</onclick>
+						<onclick>Skin.SetString(systembars,special://skin/media/mod_images/systembarsbars/default.png)</onclick>
+						<onclick>Skin.SetString(widgethighlightsquare,special://skin/media/mod_images/widgethighlight/default.png)</onclick>
+						<onclick>Skin.SetString(WidgetHighlightColor,FF8D8D8D)</onclick>						
+						<onclick>Skin.SetString(WidgetBackgroundColor,FFD1D1D1)</onclick>
+						<onclick>Skin.SetString(WidgetLabelColor,FF8D8D8D)</onclick>
+						<onclick>Skin.SetString(WidgetPosterFrameColor,FFD1D1D1)</onclick>						
+						<onclick>Skin.SetString(FocusedSubMenuButtonColor,FF727272)</onclick>
+						<onclick>Skin.SetString(FocusedSubMenuColor,FFE8E8E8)</onclick>
+						<onclick>Skin.SetString(UnfocusedSubMenuColor,FF8D8D8D)</onclick>
+						<onclick>Skin.SetString(submenuhighlight,special://skin/media/mod_images/submenuhighlight/tab06.png)</onclick>
+						<onclick>Skin.SetString(InfoBarTextColor,FF8D8D8D)</onclick>
+						<onclick>Skin.SetString(RSSFeedColor,FF8D8D8D)</onclick>
+						<onclick>Skin.SetString(UnWatchedEpColor,FF8D8D8D)</onclick>
+						<onclick>Skin.SetString(ThemeOSDProgressColor,FF0000FE)</onclick>
+						<onclick>Skin.SetString(LogoColor,FF0000FE)</onclick>
+						<onclick>Skin.SetString(KeyboardBoxColor,FF8D8D8D)</onclick>
+						<onclick>Skin.SetString(keyboardbox,special://skin/media/mod_images/keyboard/default.png)</onclick>
+						<onclick>Skin.SetString(KeyboardUnselectedKeysColor,FF373737)</onclick>
+						<onclick>Skin.SetString(KeyboardSelectedKeysColor,FF575757)</onclick>
+						<onclick>Skin.SetString(KeyboardUnselectedTextColor,FFD1D1D1)</onclick>
+						<onclick>Skin.SetString(KeyboardSelectedTextColor,FF2D8DBE)</onclick>
+						<onclick>Skin.SetString(DialogBoxColor,FF8D8D8D)</onclick>
+						<onclick>Skin.SetString(dialogpopup,special://skin/media/mod_images/dialogbox/default.png)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonUnselectedColor,FF575757)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonSelectedColor,FF8D8D8D)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonTextUnselectedColor,FF575757)</onclick>
+						<onclick>Skin.SetString(DialogBoxButtonTextSelectedColor,FFe8e8e8)</onclick>
+						<onclick>Skin.SetString(DialogBoxProgressBar,FF0000FE)</onclick>
+						<onclick>Skin.SetString(DialogBoxContentTextColor,FFe8e8e8)</onclick>
+						<onclick>Skin.SetString(PowerMenuButtonUnselectedColor,FFD1D1D1)</onclick>
+						<onclick>Skin.SetString(PowerMenuButtonSelectedColor,FFD1D1D1)</onclick>
+						<onclick>Skin.SetString(PowerMenuTextUnselectedColor,FF575757)</onclick>
+						<onclick>Skin.SetString(PowerMenuTextSelectedColor,FF2D8DBE)</onclick>
+						<onclick>Skin.SetString(ContextMenuButtonUnselectedColor,FFD1D1D1)</onclick>
+						<onclick>Skin.SetString(ContextMenuButtonSelectedColor,FFD1D1D1)</onclick>
+						<onclick>Skin.SetString(ContextMenuTextUnselectedColor,FF575757)</onclick>
+						<onclick>Skin.SetString(ContextMenuTextSelectedColor,FF2D8DBE)</onclick>
+						<onclick>Skin.SetString(TopSlideBarColor,00E8E8E8)</onclick>
+						<onclick>Skin.SetString(topslidebar,special://skin/media/mod_images/topslidebar/topdefault.png)</onclick>
+						<onclick>Skin.SetString(BottomSlideBarColor,00E8E8E8)</onclick>
+						<onclick>Skin.SetString(bottomslidebar,special://skin/media/mod_images/bottomslidebar/bottomdefault.png)</onclick>
+						<onclick>Skin.SetString(MediaMenuButtonUnselectedColor,FF8D8D8D)</onclick>
+						<onclick>Skin.SetString(MediaMenuButtonSelectedColor,FF8D8D8D)</onclick>
+						<onclick>Skin.SetString(MediaMenuTextUnselectedColor,FF8D8D8D)</onclick>
+						<onclick>Skin.SetString(MediaMenuTextSelectedColor,FF2D8DBE)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">FF8D8D8D</param>
+						</include>
+					</control>
+				</control>
+				<control type="grouplist" id="9001">
+					<left>437</left>
+					<top>32</top>
+					<width>1401</width>
+					<height>810</height>
+					<pagecontrol>60</pagecontrol>
+					<onleft>9000</onleft>
+					<onright>60</onright>
+					<onup>9001</onup>
+					<ondown>9001</ondown>
+					<visible>Container(9000).HasFocus(1)</visible>
+					<!-- <control type="radiobutton" id="100">
+						<label>$LOCALIZE[15111]</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=ThemeHomeLabelColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[ThemeHomeLabelColor]</param>
+						</include>
+					</control> -->
+					<control type="radiobutton" id="101">
+						<label>InfoBar Text</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=InfoBarTextColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[InfoBarTextColor]</param>
+						</include>
+					</control>
+					<control type="image" id="7019">
+						<top>-2</top>
+						<width>1401</width>
+						<height>2</height>
+						<texture colordiffuse="$VAR[ThemeLabelColor]">new_pvr/osd_line_white.png</texture>
+					</control>
+					<control type="button" id="1163">
+							<include>SettingsButtonCommonValues</include>
+							<label>Choose Home Menu Bar Image</label>
+							<onclick>Skin.SetImage(homemenubar,special://skin/media/mod_images/menubars)</onclick>
+							<visible>!Skin.HasSetting(Disable.Home.Menu.Bar)</visible>
+					</control>
+					<control type="radiobutton" id="109">
+						<label>$LOCALIZE[31302]</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=ThemeHomeMenuBarColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[ThemeHomeMenuBarColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="102">
+						<label>$LOCALIZE[31294]</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=FocusedMainMenuColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[FocusedMainMenuColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="103">
+						<label>$LOCALIZE[31295]</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=UnfocusedMainMenuColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[UnfocusedMainMenuColor]</param>
+						</include>
+					</control>
+					<control type="button" id="1174">
+							<include>SettingsButtonCommonValues</include>
+							<label>Choose Home Menu End Image</label>
+							<onclick>Skin.SetImage(homemenuend,special://skin/media/mod_images/menubarends)</onclick>
+							<visible>!Skin.HasSetting(Disable.Home.Menu.End)</visible>
+					</control>
+					<control type="radiobutton" id="110">
+						<label>$LOCALIZE[31522]</label>
+						<onclick condition="!System.HasAddon(script.skin.helper.colorpicker)">InstallAddon(script.skin.helper.colorpicker)</onclick>
+						<onclick condition="System.HasAddon(script.skin.helper.colorpicker)">RunScript(script.skin.helper.colorpicker,skinstring=ThemeHomeMenuEndsColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[ThemeHomeMenuEndsColor]</param>
+						</include>
+						<visible>!String.IsEqual(Skin.String(MainMenu.Layout),vertical)</visible>
+					</control>
+					<control type="image" id="7020">
+						<top>-2</top>
+						<width>1401</width>
+						<height>2</height>
+						<texture colordiffuse="$VAR[ThemeLabelColor]">new_pvr/osd_line_white.png</texture>
+					</control>
+					<control type="button" id="1171">
+						<include>SettingsButtonCommonValues</include>
+						<label>Choose System Bar Image</label>
+						<onclick>Skin.SetImage(systembars,special://skin/media/mod_images/systembars)</onclick>
+						<visible>!Skin.HasSetting(Disable.System.Bars)</visible>
+					</control>
+					<control type="radiobutton" id="111">
+						<label>$LOCALIZE[31303]</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=ThemeHomeSystemBarsColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[ThemeHomeSystemBarsColor]</param>
+						</include>
+					</control>
+					<!-- <control type="radiobutton" id="112">
+						<label>$LOCALIZE[31524]</label>
+						<onclick condition="!System.HasAddon(script.skin.helper.colorpicker)">InstallAddon(script.skin.helper.colorpicker)</onclick>
+						<onclick condition="System.HasAddon(script.skin.helper.colorpicker)">RunScript(script.skin.helper.colorpicker,skinstring=ThemeHomeSystemGlowBarsColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[ThemeHomeSystemGlowBarsColor]</param>
+						</include>
+						<visible>!String.IsEqual(Skin.String(MainMenu.Layout),vertical)</visible>
+					</control> -->
+					<control type="image" id="7021">
+						<top>-2</top>
+						<width>1401</width>
+						<height>2</height>
+						<texture colordiffuse="$VAR[ThemeLabelColor]">new_pvr/osd_line_white.png</texture>
+					</control>
+					<control type="button" id="1170">
+						<include>SettingsButtonCommonValues</include>
+						<label>Choose Submenu Highlight Image</label>
+						<onclick>Skin.SetImage(submenuhighlight,special://skin/media/mod_images/submenuhighlight)</onclick>
+						<visible>!Skin.HasSetting(Disable.Submenu.Highlight)</visible>
+					</control>
+					<control type="radiobutton" id="115">
+						<label>Focused SubMenu Button</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=FocusedSubMenuButtonColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[FocusedSubMenuButtonColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="104">
+						<label>Focused SubMenu Text</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=FocusedSubMenuColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[FocusedSubMenuColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="105">
+						<label>Unfocused SubMenu Text</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=UnfocusedSubMenuColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[UnfocusedSubMenuColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="106">
+						<label>$LOCALIZE[31298]</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=FocusedMainMenuIconLabelColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[FocusedMainMenuIconLabelColor]</param>
+						</include>
+						<visible>String.IsEqual(Skin.String(MainMenu.Layout),icons)</visible>
+					</control>
+					<control type="radiobutton" id="107">
+						<label>$LOCALIZE[31299]</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=UnfocusedMainMenuIconLabelColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[UnfocusedMainMenuIconLabelColor]</param>
+						</include>
+						<visible>String.IsEqual(Skin.String(MainMenu.Layout),icons)</visible>
+					</control>
+					<control type="image" id="7022">
+						<top>-2</top>
+						<width>1401</width>
+						<height>2</height>
+						<texture colordiffuse="$VAR[ThemeLabelColor]">new_pvr/osd_line_white.png</texture>
+					</control>
+					<control type="radiobutton" id="108">
+						<label>$LOCALIZE[31220]</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=RSSFeedColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[RSSFeedColor]</param>
+						</include>
+					</control>
+				</control>
+				<control type="grouplist" id="9002">
+					<left>437</left>
+					<top>32</top>
+					<width>1401</width>
+					<height>810</height>
+					<pagecontrol>60</pagecontrol>
+					<onleft>9000</onleft>
+					<onright>60</onright>
+					<onup>9002</onup>
+					<ondown>9002</ondown>
+					<visible>Container(9000).HasFocus(2)</visible>
+					<control type="radiobutton" id="199">
+						<label>Main Font Color</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=ThemeLabelColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[ThemeLabelColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="200">
+						<label>Selected Font Color</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=SelectedLabelColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[SelectedLabelColor]</param>
+						</include>
+					</control>
+					<control type="image" id="7004">
+						<top>-2</top>
+						<width>1401</width>
+						<height>2</height>
+						<texture colordiffuse="$VAR[ThemeLabelColor]">new_pvr/osd_line_white.png</texture>
+					</control>
+					<control type="button" id="1168">
+						<include>SettingsButtonCommonValues</include>
+						<label>Choose Highlight Image</label>
+						<onclick>Skin.SetImage(highlightbar,special://skin/media/mod_images/highlightbar)</onclick>
+						<visible>!Skin.HasSetting(Disable.Highlight.Bar)</visible>
+					</control>
+					<control type="radiobutton" id="201">
+						<label>$LOCALIZE[31304]</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=HighlightBarColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[HighlightBarColor]</param>
+						</include>
+					</control>
+					<control type="image" id="7005">
+						<top>-2</top>
+						<width>1401</width>
+						<height>2</height>
+						<texture colordiffuse="$VAR[ThemeLabelColor]">new_pvr/osd_line_white.png</texture>
+					</control>
+					<control type="radiobutton" id="202">
+						<label>$LOCALIZE[31305]</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=UnWatchedEpColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[UnWatchedEpColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="203">
+						<label>$LOCALIZE[31252]</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=TopBarColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[TopBarColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="204">
+						<label>$LOCALIZE[31346]</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=ThemeOSDProgressColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[ThemeOSDProgressColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="205">
+						<label>Logo</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=LogoColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[LogoColor]</param>
+						</include>
+					</control>
+					<control type="image" id="7006">
+						<top>-2</top>
+						<width>1401</width>
+						<height>2</height>
+						<texture colordiffuse="$VAR[ThemeLabelColor]">new_pvr/osd_line_white.png</texture>
+					</control>
+					<control type="button" id="1164">
+						<include>SettingsButtonCommonValues</include>
+						<label>Choose Keyboard Box Image</label>
+						<onclick>Skin.SetImage(keyboardbox,special://skin/media/mod_images/keyboard)</onclick>
+						<visible>!Skin.HasSetting(Disable.Keyboard.Box)</visible>
+					</control>
+					<control type="radiobutton" id="230">
+						<label>Keyboard Box</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=KeyboardBoxColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[KeyboardBoxColor]</param>
+						</include>
+					</control>
+					<!-- <control type="button" id="1170">
+						<include>SettingsButtonCommonValues</include>
+						<label>Choose Unfocused Button Image</label>
+						<onclick>Skin.SetImage(unfocusedbutton,special://skin/media/mod_images/buttons)</onclick>
+						<visible>!Skin.HasSetting(Disable.Unfocused.Button)</visible>
+					</control> -->
+					<control type="radiobutton" id="231">
+						<label>Unfocused Keyboard Keys</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=KeyboardUnselectedKeysColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[KeyboardUnselectedKeysColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="232">
+						<label>Focused Keyboard Keys</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=KeyboardSelectedKeysColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[KeyboardSelectedKeysColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="233">
+						<label>Unfocused Keyboard Text</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=KeyboardUnselectedTextColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[KeyboardUnselectedTextColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="234">
+						<label>Focused Keyboard Text</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=KeyboardSelectedTextColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[KeyboardSelectedTextColor]</param>
+						</include>
+					</control>
+					<control type="image" id="7007">
+						<top>-2</top>
+						<width>1401</width>
+						<height>2</height>
+						<texture colordiffuse="$VAR[ThemeLabelColor]">new_pvr/osd_line_white.png</texture>
+					</control>
+					<control type="button" id="1165">
+						<include>SettingsButtonCommonValues</include>
+						<label>Choose Dialog Box Image</label>
+						<onclick>Skin.SetImage(dialogpopup,special://skin/media/mod_images/dialogbox)</onclick>
+						<visible>!Skin.HasSetting(Disable.Dialog.Popup)</visible>
+					</control>
+					<control type="radiobutton" id="240">
+						<label>Dialog Box</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=DialogBoxColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[DialogBoxColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="241">
+						<label>Unfocused Dialog Box Button</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=DialogBoxButtonUnselectedColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[DialogBoxButtonUnselectedColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="242">
+						<label>Focused Dialog Box Button</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=DialogBoxButtonSelectedColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[DialogBoxButtonSelectedColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="243">
+						<label>Unfocused Dialog Box Button Text</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=DialogBoxButtonTextUnselectedColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[DialogBoxButtonTextUnselectedColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="244">
+						<label>Focused Dialog Box Button Text</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=DialogBoxButtonTextSelectedColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[DialogBoxButtonTextSelectedColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="245">
+						<label>Dialog Box Content Text</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=DialogBoxContentTextColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[DialogBoxContentTextColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="246">
+						<label>Dialog Box Progress Bar</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=DialogBoxProgressBar)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[DialogBoxProgressBar]</param>
+						</include>
+					</control>
+					<control type="image" id="7008">
+						<top>-2</top>
+						<width>1401</width>
+						<height>2</height>
+						<texture colordiffuse="$VAR[ThemeLabelColor]">new_pvr/osd_line_white.png</texture>
+					</control>
+					<control type="button" id="1172">
+						<include>SettingsButtonCommonValues</include>
+						<label>Choose Top Media Menu Bar Image</label>
+						<onclick>Skin.SetImage(topslidebar,special://skin/media/mod_images/topslidebar)</onclick>
+						<visible>!Skin.HasSetting(Disable.Top.Slide.Bar)</visible>
+					</control>
+					<control type="radiobutton" id="248">
+						<label>Top Media Menu Bar</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=TopSlideBarColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[TopSlideBarColor]</param>
+						</include>
+					</control>
+					<control type="button" id="1173">
+						<include>SettingsButtonCommonValues</include>
+						<label>Choose Bottom Media Menu Bar Image</label>
+						<onclick>Skin.SetImage(bottomslidebar,special://skin/media/mod_images/bottomslidebar)</onclick>
+						<visible>!Skin.HasSetting(Disable.Bottom.Slide.Bar)</visible>
+					</control>
+					<control type="radiobutton" id="249">
+						<label>Bottom Media Menu Bar</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=BottomSlideBarColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[BottomSlideBarColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="250">
+						<label>Unfocused Media Menu Button</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MediaMenuButtonUnselectedColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[MediaMenuButtonUnselectedColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="251">
+						<label>Focused Media Menu Button</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MediaMenuButtonSelectedColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[MediaMenuButtonSelectedColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="252">
+						<label>Unfocused Media Menu Text</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MediaMenuTextUnselectedColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[MediaMenuTextUnselectedColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="253">
+						<label>Focused Media Menu Text</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MediaMenuTextSelectedColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[MediaMenuTextSelectedColor]</param>
+						</include>
+					</control>
+					<control type="image" id="7009">
+						<top>-2</top>
+						<width>1401</width>
+						<height>2</height>
+						<texture colordiffuse="$VAR[ThemeLabelColor]">new_pvr/osd_line_white.png</texture>
+					</control>
+					<control type="radiobutton" id="260">
+						<label>Unfocused Power Menu Button</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=PowerMenuButtonUnselectedColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[PowerMenuButtonUnselectedColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="261">
+						<label>Focused Power Menu Button</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=PowerMenuButtonSelectedColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[PowerMenuButtonSelectedColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="262">
+						<label>Unfocused Power Menu Text</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=PowerMenuTextUnselectedColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[PowerMenuTextUnselectedColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="263">
+						<label>Focused Power Menu Text</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=PowerMenuTextSelectedColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[PowerMenuTextSelectedColor]</param>
+						</include>
+					</control>
+					<control type="image" id="7010">
+						<top>-2</top>
+						<width>1401</width>
+						<height>2</height>
+						<texture colordiffuse="$VAR[ThemeLabelColor]">new_pvr/osd_line_white.png</texture>
+					</control>
+					<control type="radiobutton" id="270">
+						<label>Unfocused Context Menu Button</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=ContextMenuButtonUnselectedColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[ContextMenuButtonUnselectedColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="271">
+						<label>Focused Context Menu Button</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=ContextMenuButtonSelectedColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[ContextMenuButtonSelectedColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="272">
+						<label>Unfocused Context Menu Text</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=ContextMenuTextUnselectedColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[ContextMenuTextUnselectedColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="273">
+						<label>Focused Context Menu Text</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=ContextMenuTextSelectedColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[ContextMenuTextSelectedColor]</param>
+						</include>
+					</control>
+					<control type="image" id="7011">
+						<top>-2</top>
+						<width>1401</width>
+						<height>2</height>
+						<texture colordiffuse="$VAR[ThemeLabelColor]">new_pvr/osd_line_white.png</texture>
+					</control>
+					<control type="button" id="1166">
+						<include>SettingsButtonCommonValues</include>
+						<label>Choose Transparent Frame Box Image</label>
+						<onclick>Skin.SetImage(frameboxtrans,special://skin/media/mod_images/frameboxtrans)</onclick>
+						<visible>!Skin.HasSetting(Disable.Frame.Box)</visible>
+					</control>
+					<control type="radiobutton" id="290">
+						<label>Transparent Frame Box</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=TransListBoxColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[TransListBoxColor]</param>
+						</include>
+					</control>
+					<control type="button" id="1167">
+						<include>SettingsButtonCommonValues</include>
+						<label>Choose Solid Frame Box Image</label>
+						<onclick>Skin.SetImage(frameboxsolid,special://skin/media/mod_images/frameboxsolid)</onclick>
+						<visible>!Skin.HasSetting(Disable.Frame.Box)</visible>
+					</control>
+					<control type="radiobutton" id="291">
+						<label>Solid Frame Box</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=SolidListBoxColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[SolidListBoxColor]</param>
+						</include>
+					</control>
+				</control>
+				<control type="grouplist" id="9003">
+					<left>437</left>
+					<top>32</top>
+					<width>1401</width>
+					<height>810</height>
+					<pagecontrol>60</pagecontrol>
+					<onleft>9000</onleft>
+					<onright>60</onright>
+					<onup>9003</onup>
+					<ondown>9003</ondown>
+					<visible>Container(9000).HasFocus(3)</visible>
+					<control type="button" id="1169">
+						<include>SettingsButtonCommonValues</include>
+						<label>Choose Widget Highlight Image</label>
+						<onclick>Skin.SetImage(widgethighlightsquare,special://skin/media/mod_images/widgethighlight)</onclick>
+						<visible>!Skin.HasSetting(Disable.Widget.Highlight.Square)</visible>
+					</control>
+					<control type="radiobutton" id="300">
+						<label>$LOCALIZE[31304]</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=WidgetHighlightColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[WidgetHighlightColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="301">
+						<label>$LOCALIZE[31102]</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=WidgetBackgroundColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[WidgetBackgroundColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="302">
+						<label>Widget Label Color</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=WidgetLabelColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[WidgetLabelColor]</param>
+						</include>
+					</control>
+					<control type="radiobutton" id="303">
+						<label>Widget Poster Frame Color</label>
+						<onclick>RunScript(script.skin.helper.colorpicker,skinstring=WidgetPosterFrameColor)</onclick>
+						<include content="CustomColorRadioButton">
+							<param name="ColorStringVar">$VAR[WidgetPosterFrameColor]</param>
+						</include>
+					</control>
+				</control>
+			</control>
+		</control>
+	</controls>
+</window>

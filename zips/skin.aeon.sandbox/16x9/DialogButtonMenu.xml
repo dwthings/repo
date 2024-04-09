@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol>9000</defaultcontrol>
+	<include>DialogOpenCloseAnimation</include>
+	<controls>
+		<control type="grouplist" id="9000">
+			<left>1395</left>
+			<width>410</width>
+			<height>1080</height>
+			<onleft>9000</onleft>
+			<onright>9000</onright>
+			<onup>9000</onup>
+			<ondown>9000</ondown>
+			<align>center</align>
+			<control type="button" id="2">
+			    <align>center</align>
+				<description>Exit button</description>
+				<width>410</width>
+				<height>55</height>
+				<textcolor>$VAR[PowerMenuTextUnselectedColor]</textcolor>
+				<focusedcolor>$VAR[PowerMenuTextSelectedColor]</focusedcolor>
+				<textwidth>435</textwidth>
+				<textoffsetx>45</textoffsetx>
+				<texturefocus colordiffuse="$VAR[PowerMenuButtonSelectedColor]" border="35,2,35,2">button_shutdown_focus.png</texturefocus>
+				<texturenofocus colordiffuse="$VAR[PowerMenuButtonUnselectedColor]" border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
+				<onclick>Quit()</onclick>
+				<font>font14</font>
+				<label>13012</label>
+				<visible>System.ShowExitButton</visible>
+			</control>
+			<control type="button" id="3">
+			    <align>center</align>
+				<description>Custom Shutdown button</description>
+				<width>410</width>
+				<height>55</height>
+				<textcolor>$VAR[PowerMenuTextUnselectedColor]</textcolor>
+				<focusedcolor>$VAR[PowerMenuTextSelectedColor]</focusedcolor>
+				<textwidth>435</textwidth>
+				<textoffsetx>45</textoffsetx>
+				<texturefocus colordiffuse="$VAR[PowerMenuButtonSelectedColor]" border="35,2,35,2">button_shutdown_focus.png</texturefocus>
+				<texturenofocus colordiffuse="$VAR[PowerMenuButtonUnselectedColor]" border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
+				<onclick>Powerdown()</onclick>
+				<visible>System.CanPowerDown</visible>
+				<font>font14</font>
+				<label>Power Off System</label>
+			</control>
+			<control type="button" id="4">
+			    <align>center</align>
+				<description>Shutdown Timer</description>
+				<width>410</width>
+				<height>55</height>
+				<textcolor>$VAR[PowerMenuTextUnselectedColor]</textcolor>
+				<focusedcolor>$VAR[PowerMenuTextSelectedColor]</focusedcolor>
+				<textwidth>435</textwidth>
+				<textoffsetx>45</textoffsetx>
+				<texturefocus colordiffuse="$VAR[PowerMenuButtonSelectedColor]" border="35,2,35,2">button_shutdown_focus.png</texturefocus>
+				<texturenofocus colordiffuse="$VAR[PowerMenuButtonUnselectedColor]" border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
+				<onclick>AlarmClock(shutdowntimer,Shutdown())</onclick>
+				<font>font14</font>
+				<!-- <label>20150</label> -->
+				<label>Shutdown Timer</label>
+				<visible>!System.HasAlarm(shutdowntimer)</visible>
+				<visible>System.CanPowerDown | System.CanSuspend | System.CanHibernate</visible>
+			</control>
+			<control type="button" id="5">
+			    <align>center</align>
+				<description>Cancel Shutdown Timer</description>
+				<width>410</width>
+				<height>55</height>
+				<textcolor>$VAR[PowerMenuTextUnselectedColor]</textcolor>
+				<focusedcolor>$VAR[PowerMenuTextSelectedColor]</focusedcolor>
+				<textwidth>435</textwidth>
+				<textoffsetx>45</textoffsetx>
+				<texturefocus colordiffuse="$VAR[PowerMenuButtonSelectedColor]" border="35,2,35,2">button_shutdown_focus.png</texturefocus>
+				<texturenofocus colordiffuse="$VAR[PowerMenuButtonUnselectedColor]" border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
+				<onclick>CancelAlarm(shutdowntimer)</onclick>
+				<font>font14</font>
+				<label>$LOCALIZE[20151]$INFO[System.Alarmpos, (,)]</label>
+				<visible>System.HasAlarm(shutdowntimer)</visible>
+			</control>
+			<control type="button" id="6">
+			    <align>center</align>
+				<description>Suspend button</description>
+				<width>410</width>
+				<height>55</height>
+				<textcolor>$VAR[PowerMenuTextUnselectedColor]</textcolor>
+				<focusedcolor>$VAR[PowerMenuTextSelectedColor]</focusedcolor>
+				<textwidth>435</textwidth>
+				<textoffsetx>45</textoffsetx>
+				<texturefocus colordiffuse="$VAR[PowerMenuButtonSelectedColor]" border="35,2,35,2">button_shutdown_focus.png</texturefocus>
+				<texturenofocus colordiffuse="$VAR[PowerMenuButtonUnselectedColor]" border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
+				<onclick>Suspend()</onclick>
+				<visible>System.CanSuspend</visible>
+				<font>font14</font>
+				<label>13011</label>
+			</control>
+			<control type="button" id="7">
+			    <align>center</align>
+				<description>Hibernate button</description>
+				<width>410</width>
+				<height>55</height>
+				<textcolor>$VAR[PowerMenuTextUnselectedColor]</textcolor>
+				<focusedcolor>$VAR[PowerMenuTextSelectedColor]</focusedcolor>
+				<textwidth>435</textwidth>
+				<textoffsetx>45</textoffsetx>
+				<texturefocus colordiffuse="$VAR[PowerMenuButtonSelectedColor]" border="35,2,35,2">button_shutdown_focus.png</texturefocus>
+				<texturenofocus colordiffuse="$VAR[PowerMenuButtonUnselectedColor]" border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
+				<onclick>Hibernate()</onclick>
+				<visible>System.CanHibernate</visible>
+				<font>font14</font>
+				<label>13010</label>
+			</control>
+			<control type="button" id="8">
+			    <align>center</align>
+				<description>Reboot button</description>
+				<width>410</width>
+				<height>55</height>
+				<textcolor>$VAR[PowerMenuTextUnselectedColor]</textcolor>
+				<focusedcolor>$VAR[PowerMenuTextSelectedColor]</focusedcolor>
+				<textwidth>435</textwidth>
+				<textoffsetx>45</textoffsetx>
+				<texturefocus colordiffuse="$VAR[PowerMenuButtonSelectedColor]" border="35,2,35,2">button_shutdown_focus.png</texturefocus>
+				<texturenofocus colordiffuse="$VAR[PowerMenuButtonUnselectedColor]" border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
+				<onclick>Reset()</onclick>
+				<visible>System.CanReboot</visible>
+				<font>font14</font>
+				<label>13013</label>
+			</control>
+			<control type="button" id="9">
+			    <align>center</align>
+				<description>Logoff button</description>
+				<width>410</width>
+				<height>55</height>
+				<textcolor>$VAR[PowerMenuTextUnselectedColor]</textcolor>
+				<focusedcolor>$VAR[PowerMenuTextSelectedColor]</focusedcolor>
+				<textwidth>435</textwidth>
+				<textoffsetx>45</textoffsetx>
+				<texturefocus colordiffuse="$VAR[PowerMenuButtonSelectedColor]" border="35,2,35,2">button_shutdown_focus.png</texturefocus>
+				<texturenofocus colordiffuse="$VAR[PowerMenuButtonUnselectedColor]" border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
+				<onclick>dialog.close(all,true)</onclick>
+				<onclick>System.LogOff</onclick>
+				<font>font14</font>
+				<label>$LOCALIZE[20126] $INFO[system.profilename]</label>
+				<visible>System.HasLoginScreen | Integer.IsGreater(System.ProfileCount,1)</visible>
+				<visible>System.Loggedon</visible>
+			</control>
+			<control type="togglebutton" id="10">
+			    <align>center</align>
+				<description>Master mode button</description>
+				<width>410</width>
+				<height>55</height>
+				<label>20046</label>
+				<textcolor>$VAR[PowerMenuTextUnselectedColor]</textcolor>
+				<focusedcolor>$VAR[PowerMenuTextSelectedColor]</focusedcolor>
+				<altlabel>20045</altlabel>
+				<textwidth>435</textwidth>
+				<textoffsetx>45</textoffsetx>
+				<texturefocus colordiffuse="$VAR[PowerMenuButtonSelectedColor]" border="35,2,35,2">button_shutdown_focus.png</texturefocus>
+				<texturenofocus colordiffuse="$VAR[PowerMenuButtonUnselectedColor]" border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
+				<usealttexture>!System.IsMaster</usealttexture>
+				<alttexturefocus colordiffuse="$VAR[PowerMenuButtonSelectedColor]" border="35,2,35,2">button_shutdown_focus.png</alttexturefocus>
+				<alttexturenofocus colordiffuse="$VAR[PowerMenuButtonUnselectedColor]" border="35,2,35,2">button_shutdown_nofocus.png</alttexturenofocus>
+				<onclick>xbmc.mastermode</onclick>
+				<visible>System.HasLocks</visible>
+			</control>
+			<control type="button" id="12">
+			    <align>center</align>
+				<description>Inhibit idle shutdown</description>
+				<width>410</width>
+				<height>55</height>
+				<textcolor>$VAR[PowerMenuTextUnselectedColor]</textcolor>
+				<focusedcolor>$VAR[PowerMenuTextSelectedColor]</focusedcolor>
+				<textwidth>435</textwidth>
+				<textoffsetx>45</textoffsetx>
+				<texturefocus colordiffuse="$VAR[PowerMenuButtonSelectedColor]" border="35,2,35,2">button_shutdown_focus.png</texturefocus>
+				<texturenofocus colordiffuse="$VAR[PowerMenuButtonUnselectedColor]" border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
+				<onclick>InhibitIdleShutdown(true)</onclick>
+				<font>font14</font>
+				<label>13017</label>
+				<visible>System.HasShutdown +!System.IsInhibit</visible>
+			</control>
+			<control type="button" id="13">
+			    <align>center</align>
+				<description>Allow idle shutdown</description>
+				<width>410</width>
+				<height>55</height>
+				<textcolor>$VAR[PowerMenuTextUnselectedColor]</textcolor>
+				<focusedcolor>$VAR[PowerMenuTextSelectedColor]</focusedcolor>
+				<textwidth>435</textwidth>
+				<textoffsetx>45</textoffsetx>
+				<texturefocus colordiffuse="$VAR[PowerMenuButtonSelectedColor]" border="35,2,35,2">button_shutdown_focus.png</texturefocus>
+				<texturenofocus colordiffuse="$VAR[PowerMenuButtonUnselectedColor]" border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
+				<onclick>InhibitIdleShutdown(false)</onclick>
+				<font>font14</font>
+				<label>13018</label>
+				<visible>System.HasShutdown + System.IsInhibit</visible>
+			</control>
+			<control type="button" id="14">
+			    <align>center</align>
+				<description>Settings</description>
+				<width>410</width>
+				<height>55</height>
+				<textcolor>$VAR[PowerMenuTextUnselectedColor]</textcolor>
+				<focusedcolor>$VAR[PowerMenuTextSelectedColor]</focusedcolor>
+				<textwidth>435</textwidth>
+				<textoffsetx>45</textoffsetx>
+				<texturefocus colordiffuse="$VAR[PowerMenuButtonSelectedColor]" border="35,2,35,2">button_shutdown_focus.png</texturefocus>
+				<texturenofocus colordiffuse="$VAR[PowerMenuButtonUnselectedColor]" border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
+				<onclick>Dialog.Close(all,true)</onclick>
+				<onclick>ActivateWindow(settings)</onclick>
+				<font>font14</font>
+				<label>$LOCALIZE[5]</label>
+			</control>
+			<control type="button" id="18">
+			    <align>center</align>
+				<description>Skin Settings</description>
+				<width>410</width>
+				<height>55</height>
+				<textcolor>$VAR[PowerMenuTextUnselectedColor]</textcolor>
+				<focusedcolor>$VAR[PowerMenuTextSelectedColor]</focusedcolor>
+				<textwidth>435</textwidth>
+				<textoffsetx>45</textoffsetx>
+				<texturefocus colordiffuse="$VAR[PowerMenuButtonSelectedColor]" border="35,2,35,2">button_shutdown_focus.png</texturefocus>
+				<texturenofocus colordiffuse="$VAR[PowerMenuButtonUnselectedColor]" border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
+				<onclick>Dialog.Close(all,true)</onclick>
+				<onclick>ActivateWindow(skinsettings)</onclick>
+				<font>font14</font>
+				<label>Skin Settings</label>
+			</control>
+			<control type="button" id="15">
+			    <align>center</align>
+				<description>Favorites</description>
+				<width>410</width>
+				<height>55</height>
+				<textcolor>$VAR[PowerMenuTextUnselectedColor]</textcolor>
+				<focusedcolor>$VAR[PowerMenuTextSelectedColor]</focusedcolor>
+				<textwidth>435</textwidth>
+				<textoffsetx>45</textoffsetx>
+				<texturefocus colordiffuse="$VAR[PowerMenuButtonSelectedColor]" border="35,2,35,2">button_shutdown_focus.png</texturefocus>
+				<texturenofocus colordiffuse="$VAR[PowerMenuButtonUnselectedColor]" border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
+				<onclick>ActivateWindow(favourites)</onclick>
+				<font>font14</font>
+				<label>1036</label>
+			</control>
+			<control type="button" id="17">
+			    <align>center</align>
+				<description>Reload Skin button</description>
+				<width>410</width>
+				<height>55</height>
+				<textcolor>$VAR[PowerMenuTextUnselectedColor]</textcolor>
+				<focusedcolor>$VAR[PowerMenuTextSelectedColor]</focusedcolor>
+				<textwidth>435</textwidth>
+				<textoffsetx>45</textoffsetx>
+				<texturefocus colordiffuse="$VAR[PowerMenuButtonSelectedColor]" border="35,2,35,2">button_shutdown_focus.png</texturefocus>
+				<texturenofocus colordiffuse="$VAR[PowerMenuButtonUnselectedColor]" border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
+				<onclick>Dialog.Close(all,true)</onclick>
+				<onclick>ReloadSkin()</onclick>
+				<font>font14</font>
+				<label>Reload Skin</label>
+			</control>
+			<control type="image" id="16">
+				<width>410</width>
+				<height>34</height>
+			</control>
+		</control>
+	</controls>
+</window>

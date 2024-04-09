@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<include name="EpgTimelineStandard">
+		<control type="group">
+			<description>TV Guide Timeline</description>
+			<top>50</top>
+			<include>DialogOpenCloseAnimation</include>
+			<control type="image">
+				<left>40</left>
+				<width>1840</width>
+				<height>1012</height>
+				<texture border="40">dialogs/default/bg.png</texture>
+				<visible>[String.IsEmpty(Skin.String(frameboxtrans))]</visible>
+				<visible>!Skin.HasSetting(Disable.Frame.Box)</visible>
+			</control>
+			<control type="image">
+				<left>40</left>
+				<width>1840</width>
+				<height>1012</height>
+				<texture colordiffuse="$VAR[TransListBoxColor]" fallback="dialogs/default/bg.png" border="40">$INFO[Skin.String(frameboxtrans)]</texture>
+				<visible>!Skin.HasSetting(Disable.Frame.Box)</visible>
+			</control>
+			<control type="fixedlist" id="11">
+				<left>80</left>
+				<top>31</top>
+				<width>1760</width>
+				<height>60</height>
+				<onup>10</onup>
+				<ondown>10</ondown>
+				<orientation>horizontal</orientation>
+				<itemlayout height="60" width="352">
+					<control type="label">
+						<width>352</width>
+						<height>60</height>
+						<textoffsetx>15</textoffsetx>
+						<font>font14</font>
+						<textcolor>$VAR[ThemeLabelColor]</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</itemlayout>
+				<focusedlayout height="60" width="352">
+					<control type="image">
+						<width>352</width>
+						<height>60</height>
+						<texture border="5">listselect_fo.png</texture>
+						<visible>[String.IsEmpty(Skin.String(highlightbar))]</visible>
+						<visible>!Skin.HasSetting(Disable.Highlight.Bar)</visible>
+						<visible>Control.HasFocus(11)</visible>
+					</control>
+					<control type="image">
+						<width>352</width>
+						<height>60</height>
+						<texture colordiffuse="$VAR[HighlightBarColor]" fallback="listselect_fo.png" border="5">$INFO[Skin.String(highlightbar)]</texture>
+						<visible>!Skin.HasSetting(Disable.Highlight.Bar)</visible>
+						<visible>Control.HasFocus(11)</visible>
+					</control>
+					<control type="label">
+						<width>352</width>
+						<height>60</height>
+						<textoffsetx>15</textoffsetx>
+						<font>font14</font>
+						<textcolor>$VAR[SelectedLabelColor]</textcolor>
+						<scroll>true</scroll>
+						<label>$INFO[ListItem.Label]</label>
+						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(11)">Conditional</animation>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="epggrid" id="10">
+				<description>EPG Grid</description>
+				<left>70</left>
+				<top>90</top>
+				<width>1780</width>
+				<height>646</height>
+				<pagecontrol>10</pagecontrol>
+				<scrolltime tween="quadratic" easing="out">200</scrolltime>
+				<timeblocks>20</timeblocks>
+				<progresstexture colordiffuse="$VAR[ThemeLabelColor]"border="0,20,18,14">new_pvr/PVR-EpgProgressIndicator.png</progresstexture>
+				<rulerunit>6</rulerunit>
+				<onleft>10</onleft>
+				<onright>10</onright>
+				<onup>11</onup>
+				<ondown>11</ondown>
+				<onback>SetProperty(MediaMenu,True,Home)</onback>
+				<onback>28</onback>
+				<viewtype label="19032">list</viewtype>
+				<rulerlayout height="45" width="60">
+					<control type="label" id="2">
+						<width>60</width>
+						<height>45</height>
+						<textcolor>$VAR[ThemeLabelColor]</textcolor>
+						<textoffsetx>15</textoffsetx>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</rulerlayout>
+				<channellayout height="60" width="440">
+					<control type="label">
+						<width>80</width>
+						<height>60</height>
+						<font>font15</font>
+						<align>center</align>
+						<textcolor>$VAR[ThemeLabelColor]</textcolor>
+						<label>[B]$INFO[ListItem.ChannelNumberLabel][/B]</label>
+					</control>
+					<control type="label">
+						<left>158</left>
+						<width>300</width>
+						<height>60</height>
+						<font>font15</font>
+						<textoffsetx>15</textoffsetx>
+						<textcolor>$VAR[ThemeLabelColor]</textcolor>
+						<label>$INFO[ListItem.ChannelName]</label>
+						<visible>String.IsEqual(Skin.String(LiveTV.EpgViewChannels),1) + String.IsEmpty(ListItem.Icon) | !String.IsEqual(Skin.String(LiveTV.EpgViewChannels),1)</visible>
+					</control>
+					<control type="image">
+						<left>90</left>
+						<top>2</top>
+						<width>65</width>
+						<height>56</height>
+						<aspectratio align="left">keep</aspectratio>
+						<texture background="true">$INFO[ListItem.Icon]</texture>
+						<visible>String.IsEqual(Skin.String(LiveTV.EpgViewChannels),2) + !String.IsEmpty(ListItem.Icon)</visible>
+					</control>
+					<control type="image">
+						<left>90</left>
+						<top>2</top>
+						<width>200</width>
+						<height>56</height>
+						<aspectratio align="left">keep</aspectratio>
+						<texture background="true">$INFO[ListItem.Icon]</texture>
+						<visible>String.IsEqual(Skin.String(LiveTV.EpgViewChannels),1) + !String.IsEmpty(ListItem.Icon)</visible>
+					</control>
+				</channellayout>
+				<focusedchannellayout height="60" width="440">
+					<control type="image">
+						<width>440</width>
+						<height>60</height>
+						<texture border="4">listselect_fo.png</texture>
+						<visible>[String.IsEmpty(Skin.String(highlightbar))]</visible>
+						<visible>!Skin.HasSetting(Disable.Highlight.Bar)</visible>
+						<visible>Control.HasFocus(10)</visible>
+					</control>
+					<control type="image">
+						<width>440</width>
+						<height>60</height>
+						<texture colordiffuse="$VAR[HighlightBarColor]" fallback="listselect_fo.png" border="4">$INFO[Skin.String(highlightbar)]</texture>
+						<visible>!Skin.HasSetting(Disable.Highlight.Bar)</visible>
+						<visible>Control.HasFocus(10)</visible>
+					</control>
+					<control type="label">
+						<width>80</width>
+						<height>60</height>
+						<font>font15</font>
+						<textcolor>$VAR[SelectedLabelColor]</textcolor>
+						<align>center</align>
+						<label>[B]$INFO[ListItem.ChannelNumberLabel][/B]</label>
+					</control>
+					<control type="label">
+						<left>158</left>
+						<width>300</width>
+						<height>60</height>
+						<font>font15</font>
+						<textcolor>$VAR[SelectedLabelColor]</textcolor>
+						<textoffsetx>15</textoffsetx>
+						<label>$INFO[ListItem.ChannelName]</label>
+						<visible>String.IsEqual(Skin.String(LiveTV.EpgViewChannels),1) + String.IsEmpty(ListItem.Icon) | !String.IsEqual(Skin.String(LiveTV.EpgViewChannels),1)</visible>
+					</control>
+					<control type="image">
+						<left>90</left>
+						<top>2</top>
+						<width>65</width>
+						<height>56</height>
+						<aspectratio align="left">keep</aspectratio>
+						<texture background="true">$INFO[ListItem.Icon]</texture>
+						<visible>String.IsEqual(Skin.String(LiveTV.EpgViewChannels),2) + !String.IsEmpty(ListItem.Icon)</visible>
+					</control>
+					<control type="image">
+						<left>90</left>
+						<top>1</top>
+						<width>200</width>
+						<height>58</height>
+						<aspectratio align="left">keep</aspectratio>
+						<texture background="true">$INFO[ListItem.Icon]</texture>
+						<visible>String.IsEqual(Skin.String(LiveTV.EpgViewChannels),1) + !String.IsEmpty(ListItem.Icon)</visible>
+					</control>
+				</focusedchannellayout>
+				<itemlayout height="60" width="120">
+					<control type="image" id="1">
+						<width>120</width>
+						<height>60</height>
+						<aspectratio>stretch</aspectratio>
+						<texture colordiffuse="33FFFFFF">new_pvr/epg-item.png</texture>
+					</control>
+					<control type="image" id="1">
+						<width>120</width>
+						<height>60</height>
+						<aspectratio>stretch</aspectratio>
+						<texture border="3">$INFO[ListItem.Property(GenreType),new_pvr/epg-genres/,.png]</texture>
+						<visible>Skin.HasSetting(Enable.PVRGenreColors)</visible>
+					</control>
+					<control type="image" id="2">
+						<width>120</width>
+						<height>60</height>
+						<aspectratio>stretch</aspectratio>
+						<texture border="3" colordiffuse="66FFFFFF">new_pvr/epg-genres/0.png</texture>
+						<visible>Skin.HasSetting(Enable.PVRGenreColors) + Skin.HasSetting(Enable.LighterPVRGenreColors)</visible>
+					</control>
+					<control type="label">
+						<width>120</width>
+						<height>60</height>
+						<font>IconSmall</font>
+						<textoffsetx>14</textoffsetx>
+						<textcolor>$VAR[ThemeLabelColor]</textcolor>
+						<label></label>
+						<visible>ListItem.HasTimer + !ListItem.IsRecording</visible>
+					</control>
+					<control type="image">
+						<top>7</top>
+						<width>50</width>
+						<height>50</height>
+						<texture>new_pvr/PVR-IsRecording.png</texture>
+						<animation effect="fade" start="100" end="40" time="2000" pulse="true" condition="true">Conditional</animation>
+						<visible>ListItem.IsRecording</visible>
+					</control>
+					<control type="label" id="1">
+						<width>120</width>
+						<height>60</height>
+						<font>font15</font>
+						<textoffsetx>15</textoffsetx>
+						<textcolor>$VAR[ThemeLabelColor]</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+						<animation effect="slide" start="0,0" end="40,0" time="0" tween="sine" easing="in" condition="[ListItem.HasTimer | ListItem.IsRecording]">Conditional</animation>
+					</control>
+				</itemlayout>
+				<focusedlayout height="60" width="120">
+					<control type="image" id="14">
+						<texture border="4">listselect_fo.png</texture>
+						<visible>[String.IsEmpty(Skin.String(highlightbar))]</visible>
+						<visible>!Skin.HasSetting(Disable.Highlight.Bar)</visible>
+						<visible>Control.HasFocus(10)</visible>
+					</control>
+					<control type="image" id="14">
+						<texture colordiffuse="$VAR[HighlightBarColor]" fallback="listselect_fo.png" border="4">$INFO[Skin.String(highlightbar)]</texture>
+						<visible>!Skin.HasSetting(Disable.Highlight.Bar)</visible>
+						<visible>Control.HasFocus(10)</visible>
+					</control>
+					<control type="label">
+						<width>120</width>
+						<height>60</height>
+						<font>IconSmall</font>
+						<textoffsetx>15</textoffsetx>
+						<textcolor>$VAR[ThemeLabelColor]</textcolor>
+						<label></label>
+						<visible>ListItem.HasTimer + !ListItem.IsRecording</visible>
+					</control>
+					<control type="image">
+						<top>7</top>
+						<width>50</width>
+						<height>50</height>
+						<texture>new_pvr/PVR-IsRecording.png</texture>
+						<animation effect="fade" start="100" end="40" time="2000" pulse="true" condition="true">Conditional</animation>
+						<visible>ListItem.IsRecording</visible>
+					</control>
+					<control type="label" id="1">
+						<width>120</width>
+						<height>60</height>
+						<font>font15</font>
+						<textcolor>$VAR[SelectedLabelColor]</textcolor>
+						<textoffsetx>15</textoffsetx>
+						<label>$INFO[ListItem.Label]</label>
+						<animation effect="slide" end="40" condition="[ListItem.HasTimer | ListItem.IsRecording]">Conditional</animation>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="group">
+				<control type="image">
+					<top>740</top>
+					<left>65</left>
+					<width>440</width>
+					<height>200</height>
+					<aspectratio>keep</aspectratio>
+					<fadetime>400</fadetime>
+					<texture background="true">$INFO[ListItem.Icon]</texture>
+				</control>
+				<control type="group">
+					<visible>Player.HasVideo</visible>
+					<top>740</top>
+					<left>65</left>
+					<control type="videowindow">
+						<width>440</width>
+						<height>200</height>
+					</control>
+				</control>
+				<control type="label">
+							<left>70</left>
+							<top>939</top>
+							<width>100</width>
+							<height>30</height>
+							<label>$INFO[ListItem.StartTime]</label>
+							<font>font12</font>
+							<textcolor>$VAR[SelectedLabelColor]</textcolor>
+							<visible>ListItem.HasEpg</visible>
+						</control>
+						<control type="progress">
+							<left>172</left>
+							<top>946</top>
+							<width>223</width>
+							<height>18</height>
+							<texturebg colordiffuse="$VAR[ThemeLabelColor]" border="3">new_pvr/texturebg_border_white.png</texturebg>
+							<midtexture colordiffuse="$VAR[ThemeLabelColor]" border="3">new_pvr/texturebg_white.png</midtexture>
+							<visible>ListItem.HasEpg</visible>
+							<info>ListItem.Progress</info>
+						</control>
+						<control type="label">
+							<left>400</left>
+							<top>939</top>
+							<width>100</width>
+							<height>30</height>
+							<label>$INFO[ListItem.EndTime]</label>
+							<font>font12</font>
+							<textcolor>$VAR[SelectedLabelColor]</textcolor>
+							<visible>ListItem.HasEpg</visible>
+						</control>				
+				<control type="group">
+					<control type="label">
+						<top>745</top>
+						<left>510</left>
+						<width>1350</width>
+						<height>30</height>
+						<font>font15</font>
+						<textcolor>$VAR[ThemeLabelColor]</textcolor>
+						<textoffsetx>15</textoffsetx>						
+						<label>[COLOR $VAR[SelectedLabelColor]]$INFO[ListItem.StartTime]$INFO[ListItem.EndTime, - ,: ][/COLOR][COLOR $VAR[SelectedLabelColor]]$INFO[ListItem.Title][/COLOR]</label>
+					</control>
+					<control type="textbox">
+						<top>780</top>
+						<left>520</left>
+						<width>1310</width>
+						<height>175</height>
+						<align>justify</align>
+						<label>$INFO[ListItem.Plot]</label>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+					</control>
+				</control>
+			</control>
+		</control>
+	</include>
+	<include name="EpgTimelineMinified">
+		<control type="group">
+			<description>TV Guide Timeline</description>
+			<include>DialogOpenCloseAnimation</include>
+			<top>750</top>
+			<control type="image">
+				<left>-40</left>
+				<top>-60</top>
+				<width>2000</width>
+				<height>410</height>
+				<texture border="40">dialogs/default/bg.png</texture>
+				<visible>[String.IsEmpty(Skin.String(frameboxtrans))]</visible>
+				<visible>!Skin.HasSetting(Disable.Frame.Box)</visible>
+			</control>
+			<control type="image">
+				<left>-40</left>
+				<top>-60</top>
+				<width>2000</width>
+				<height>410</height>
+				<texture colordiffuse="$VAR[TransListBoxColor]" fallback="dialogs/default/bg.png" border="40">$INFO[Skin.String(frameboxtrans)]</texture>
+				<visible>!Skin.HasSetting(Disable.Frame.Box)</visible>
+			</control>
+			<control type="fixedlist" id="11">
+				<left>380</left>
+				<top>-38</top>
+				<width>1540</width>
+				<height>60</height>
+				<onup>10</onup>
+				<ondown>10</ondown>
+				<orientation>horizontal</orientation>
+				<itemlayout height="60" width="308">
+					<control type="label">
+						<width>308</width>
+						<height>60</height>
+						<textoffsetx>15</textoffsetx>
+						<font>font14</font>
+						<textcolor>grey2</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</itemlayout>
+				<focusedlayout height="60" width="308">
+					<control type="image">
+						<width>308</width>
+						<height>60</height>
+						<texture border="5">listselect_fo.png</texture>
+						<visible>[String.IsEmpty(Skin.String(highlightbar))]</visible>
+						<visible>!Skin.HasSetting(Disable.Highlight.Bar)</visible>
+						<visible>Control.HasFocus(11)</visible>
+					</control>
+					<control type="image">
+						<width>308</width>
+						<height>60</height>
+						<texture colordiffuse="$VAR[HighlightBarColor]" fallback="listselect_fo.png" border="5">$INFO[Skin.String(highlightbar)]</texture>
+						<visible>!Skin.HasSetting(Disable.Highlight.Bar)</visible>
+						<visible>Control.HasFocus(11)</visible>
+					</control>
+					<control type="label">
+						<width>308</width>
+						<height>60</height>
+						<textoffsetx>15</textoffsetx>
+						<font>font14</font>
+						<scroll>true</scroll>
+						<label>$INFO[ListItem.Label]</label>
+						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(11)">Conditional</animation>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="epggrid" id="10">
+				<description>EPG Grid</description>
+				<left>390</left>
+				<top>8</top>
+				<width>1520</width>
+				<height>320</height>
+				<pagecontrol>10</pagecontrol>
+				<scrolltime tween="quadratic" easing="out">200</scrolltime>
+				<timeblocks>20</timeblocks>
+				<progresstexture border="0,70,18,14">new_pvr/PVR-EpgProgressIndicator_mini_2.png</progresstexture>
+				<rulerunit>6</rulerunit>
+				<onleft>10</onleft>
+				<onright>10</onright>
+				<onup>11</onup>
+				<ondown>11</ondown>
+				<onback>SetProperty(MediaMenu,True,Home)</onback>
+				<onback>28</onback>
+				<viewtype label="19032">list</viewtype>
+				<rulerlayout height="45" width="40">
+					<control type="label" id="2">
+						<width>40</width>
+						<height>45</height>
+						<top>5</top>
+						<font>font11</font>
+						<textcolor>$VAR[ThemeLabelColor]</textcolor>
+						<textoffsetx>5</textoffsetx>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</rulerlayout>
+				<channellayout height="55" width="400">
+					<control type="image">
+						<width>400</width>
+						<height>55</height>
+						<texture colordiffuse="33FFFFFF">new_pvr/epg-channels.png</texture>
+					</control>
+					<control type="label">
+						<width>80</width>
+						<height>55</height>
+						<font>font14</font>
+						<textcolor>grey2</textcolor>
+						<label>$INFO[ListItem.ChannelNumberLabel]</label>
+					</control>
+					<control type="image">
+						<left>80</left>
+						<top>2</top>
+						<width>65</width>
+						<height>52</height>
+						<aspectratio align="left">keep</aspectratio>
+						<texture background="true">$INFO[ListItem.Icon]</texture>
+						<visible>String.IsEqual(Skin.String(LiveTV.EpgViewChannels),2) + !String.IsEmpty(ListItem.Icon)</visible>
+					</control>
+					<control type="label">
+						<left>80</left>
+						<width>345</width>
+						<height>55</height>
+						<font>font14</font>
+						<textoffsetx>15</textoffsetx>
+						<textcolor>grey2</textcolor>
+						<label>$INFO[ListItem.ChannelName]</label>
+						<visible>String.IsEmpty(Skin.String(LiveTV.EpgViewChannels))</visible>
+					</control>
+					<control type="label">
+						<left>140</left>
+						<width>290</width>
+						<height>55</height>
+						<font>font14</font>
+						<textoffsetx>15</textoffsetx>
+						<textcolor>grey2</textcolor>
+						<label>$INFO[ListItem.ChannelName]</label>
+						<visible>String.IsEqual(Skin.String(LiveTV.EpgViewChannels),2)</visible>
+					</control>
+					<control type="image">
+						<left>80</left>
+						<top>2</top>
+						<width>335</width>
+						<height>52</height>
+						<aspectratio align="center">keep</aspectratio>
+						<texture background="true">$INFO[ListItem.Icon]</texture>
+						<visible>String.IsEqual(Skin.String(LiveTV.EpgViewChannels),1) + !String.IsEmpty(ListItem.Icon)</visible>
+					</control>
+				</channellayout>
+				<focusedchannellayout height="55" width="400">
+					<control type="image">
+						<width>400</width>
+						<height>55</height>
+						<texture border="4">listselect_fo.png</texture>
+						<visible>[String.IsEmpty(Skin.String(highlightbar))]</visible>
+						<visible>!Skin.HasSetting(Disable.Highlight.Bar)</visible>
+						<visible>Control.HasFocus(10)</visible>
+					</control>
+					<control type="image">
+						<width>400</width>
+						<height>55</height>
+						<texture colordiffuse="$VAR[HighlightBarColor]" fallback="listselect_fo.png" border="4">$INFO[Skin.String(highlightbar)]</texture>
+						<visible>!Skin.HasSetting(Disable.Highlight.Bar)</visible>
+						<visible>Control.HasFocus(10)</visible>
+					</control>
+					<control type="label">
+						<width>80</width>
+						<height>55</height>
+						<font>font14</font>
+						<label>$INFO[ListItem.ChannelNumberLabel]</label>
+					</control>
+					<control type="image">
+						<left>80</left>
+						<top>2</top>
+						<width>65</width>
+						<height>52</height>
+						<aspectratio align="left">keep</aspectratio>
+						<texture background="true">$INFO[ListItem.Icon]</texture>
+						<visible>String.IsEqual(Skin.String(LiveTV.EpgViewChannels),2) + !String.IsEmpty(ListItem.Icon)</visible>
+					</control>
+					<control type="label">
+						<left>80</left>
+						<width>365</width>
+						<height>55</height>
+						<font>font14</font>
+						<textoffsetx>15</textoffsetx>
+						<label>$INFO[ListItem.ChannelName]</label>
+						<visible>String.IsEmpty(Skin.String(LiveTV.EpgViewChannels))</visible>
+					</control>
+					<control type="label">
+						<left>140</left>
+						<width>290</width>
+						<height>55</height>
+						<font>font14</font>
+						<textoffsetx>15</textoffsetx>
+						<label>$INFO[ListItem.ChannelName]</label>
+						<visible>String.IsEqual(Skin.String(LiveTV.EpgViewChannels),2)</visible>
+					</control>
+					<control type="image">
+						<left>80</left>
+						<top>2</top>
+						<width>335</width>
+						<height>52</height>
+						<aspectratio align="center">keep</aspectratio>
+						<texture background="true">$INFO[ListItem.Icon]</texture>
+						<visible>String.IsEqual(Skin.String(LiveTV.EpgViewChannels),1) + !String.IsEmpty(ListItem.Icon)</visible>
+					</control>
+				</focusedchannellayout>
+				<itemlayout height="55" width="120">
+					<control type="image" id="1">
+						<width>120</width>
+						<height>55</height>
+						<aspectratio>stretch</aspectratio>
+						<texture colordiffuse="33FFFFFF">new_pvr/epg-item.png</texture>
+					</control>
+					<control type="image" id="1">
+						<width>120</width>
+						<height>55</height>
+						<aspectratio>stretch</aspectratio>
+						<texture border="3">$INFO[ListItem.Property(GenreType),new_pvr/epg-genres/,.png]</texture>
+						<visible>Skin.HasSetting(Enable.PVRGenreColors)</visible>
+					</control>
+					<control type="image" id="2">
+						<width>120</width>
+						<height>55</height>
+						<aspectratio>stretch</aspectratio>
+						<texture border="3" colordiffuse="66FFFFFF">new_pvr/epg-genres/0.png</texture>
+						<visible>Skin.HasSetting(Enable.PVRGenreColors) + Skin.HasSetting(Enable.LighterPVRGenreColors)</visible>
+					</control>
+					<control type="group">
+						<visible>[ListItem.HasTimer | ListItem.IsRecording]</visible>
+						<control type="label">
+							<width>120</width>
+							<height>55</height>
+							<font>IconSmall</font>
+							<textoffsetx>14</textoffsetx>
+							<textcolor>$VAR[ThemeLabelColor]</textcolor>
+							<label></label>
+							<visible>ListItem.HasTimer + !ListItem.IsRecording</visible>
+						</control>
+						<control type="label">
+							<width>120</width>
+							<height>55</height>
+							<font>IconSmall</font>
+							<textoffsetx>14</textoffsetx>
+							<textcolor>DDFF0000</textcolor>
+							<label></label>
+							<visible>ListItem.IsRecording</visible>
+						</control>
+					</control>
+					<control type="label" id="1">
+						<width>120</width>
+						<height>55</height>
+						<font>font14</font>
+						<textoffsetx>15</textoffsetx>
+						<textcolor>grey2</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+						<animation effect="slide" start="0,0" end="40,0" time="0" tween="sine" easing="in" condition="[ListItem.HasTimer | ListItem.IsRecording]">Conditional</animation>
+					</control>
+				</itemlayout>
+				<focusedlayout height="55" width="120">
+					<control type="image" id="14">
+						<texture border="4">listselect_fo.png</texture>
+						<visible>[String.IsEmpty(Skin.String(highlightbar))]</visible>
+						<visible>!Skin.HasSetting(Disable.Highlight.Bar)</visible>
+						<visible>Control.HasFocus(10)</visible>
+					</control>
+					<control type="image" id="14">
+						<texture colordiffuse="$VAR[HighlightBarColor]" fallback="listselect_fo.png" border="4">$INFO[Skin.String(highlightbar)]</texture>
+						<visible>!Skin.HasSetting(Disable.Highlight.Bar)</visible>
+						<visible>Control.HasFocus(10)</visible>
+					</control>
+					<control type="group">
+						<visible>[ListItem.HasTimer | ListItem.IsRecording]</visible>
+						<control type="label">
+							<width>120</width>
+							<height>55</height>
+							<font>IconSmall</font>
+							<textoffsetx>14</textoffsetx>
+							<textcolor>$VAR[ThemeLabelColor]</textcolor>
+							<label></label>
+							<visible>ListItem.HasTimer + !ListItem.IsRecording</visible>
+						</control>
+						<control type="label">
+							<width>120</width>
+							<height>55</height>
+							<font>IconSmall</font>
+							<textoffsetx>14</textoffsetx>
+							<textcolor>DDFF0000</textcolor>
+							<selectedcolor>DDFF0000</selectedcolor>
+							<label></label>
+							<visible>ListItem.IsRecording</visible>
+						</control>
+					</control>
+					<control type="label" id="1">
+						<width>120</width>
+						<height>55</height>
+						<font>font14</font>
+						<textoffsetx>15</textoffsetx>
+						<label>$INFO[ListItem.Label]</label>
+						<animation effect="slide" start="0,0" end="40,0" time="0" tween="sine" easing="in" condition="[ListItem.HasTimer | ListItem.IsRecording]">Conditional</animation>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="group">
+				<left>15</left>
+				<top>-25</top>
+				<control type="label">
+					<width>360</width>
+					<height>30</height>
+					<label>$INFO[ListItem.Title]</label>
+				</control>
+				<control type="label">
+					<top>35</top>
+					<width>360</width>
+					<height>30</height>
+					<font>font12</font>
+					<textcolor>$VAR[ThemeLabelColor]</textcolor>
+					<label>$INFO[ListItem.Genre]</label>
+				</control>
+				<control type="label">
+					<top>70</top>
+					<width>360</width>
+					<height>30</height>
+					<font>font12</font>
+					<textcolor>$VAR[ThemeLabelColor]</textcolor>
+					<label>$INFO[ListItem.StartTime]$INFO[ListItem.EndTime, - ,]</label>
+				</control>
+				<control type="textbox">
+					<top>110</top>
+					<width>360</width>
+					<height>220</height>
+					<font>font13</font>
+					<textcolor>grey</textcolor>
+					<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+					<label>$INFO[ListItem.Plot]</label>
+				</control>
+			</control>
+		</control>
+	</include>
+	<variable name="GuideChannelListTypeOptionsClickVar">
+		<value condition="String.IsEmpty(Skin.String(LiveTV.EpgViewChannels))">Skin.SetString(LiveTV.EpgViewChannels,1)</value>
+		<value condition="String.IsEqual(Skin.String(LiveTV.EpgViewChannels),1)">Skin.SetString(LiveTV.EpgViewChannels,2)</value>
+		<value condition="String.IsEqual(Skin.String(LiveTV.EpgViewChannels),2)">Skin.Reset(LiveTV.EpgViewChannels)</value>
+	</variable>
+	<variable name="GuideChannelListTypeOptionsLabelVar">
+		<value condition="String.IsEqual(Skin.String(LiveTV.EpgViewChannels),1)">$LOCALIZE[31358]</value>
+		<value condition="String.IsEqual(Skin.String(LiveTV.EpgViewChannels),2)">$LOCALIZE[31359]</value>
+		<value>$LOCALIZE[31362]</value>
+	</variable>
+	<variable name="GuideTimelineViewOptionsClickVar">
+		<value condition="String.IsEmpty(Skin.String(LiveTV.EpgViewType))">Skin.SetString(LiveTV.EpgViewType,1)</value>
+		<value condition="String.IsEqual(Skin.String(LiveTV.EpgViewType),1)">Skin.Reset(LiveTV.EpgViewType)</value>
+		<value condition="String.IsEqual(Skin.String(LiveTV.EpgViewType),2)">Skin.Reset(LiveTV.EpgViewType)</value>
+	</variable>
+	<variable name="GuideTimelineViewTypeOptionsLabelVar">
+		<value condition="String.IsEqual(Skin.String(LiveTV.EpgViewType),1)">$LOCALIZE[31222]</value>
+		<value>$LOCALIZE[602]</value>
+	</variable>
+	<variable name="LiveTvInfobarTypeOptionsClickVar">
+		<value condition="String.IsEmpty(Skin.String(LiveTV.InfobarType))">Skin.SetString(LiveTV.InfobarType,1)</value>
+		<value condition="String.IsEqual(Skin.String(LiveTV.InfobarType),1)">Skin.Reset(LiveTV.InfobarType)</value>
+	</variable>
+	<variable name="LiveTvInfobarTypeOptionsLabelVar">
+		<value condition="String.IsEqual(Skin.String(LiveTV.InfobarType),1)">$LOCALIZE[31361]</value>
+		<value>$LOCALIZE[602]</value>
+	</variable>
+</includes>

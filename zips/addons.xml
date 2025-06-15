@@ -181,7 +181,6 @@
         </assets>
     	</extension>
 	</addon>
-</addons>
 <addon id="script.module.accountmgr" version="2.6.6" name="Account Manager" provider-name="Zaxxon709">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0" />
@@ -206,3 +205,5 @@
 		</assets>
 	</extension>
 </addon>
+</addons>
+
